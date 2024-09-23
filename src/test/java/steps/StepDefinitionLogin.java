@@ -33,13 +33,13 @@ public class StepDefinitionLogin {
     public void user_is_on_login_page(){
         driver.navigate().to("https://the-internet.herokuapp.com/login");
     }
-    @When("User enters valid username")
-    public void user_enters_valid_username(){
-        loginPage.inputUsername("tomsmith");
+    @When("User enters valid username {string}")
+    public void user_enters_valid_username(String username){
+        loginPage.inputUsername(username);
     }
-    @And("User enters valid password")
-    public void user_enters_valid_password(){
-        loginPage.inputPassword("SuperSecretPassword!");
+    @And("User enters valid password {string}")
+    public void user_enters_valid_password(String password){
+        loginPage.inputPassword(password);
     }
     @And("User clicks login button")
     public void user_clicks_login_button(){
@@ -47,6 +47,6 @@ public class StepDefinitionLogin {
     }
     @Then("User is logged in")
     public void user_is_logged_in(){
-        Assert.assertTrue(securePage.logOutButton.isDisplayed());
+        Assert.assertEquals(securePage.getLoginMsgText(), "You logged into a secure area!\n" + "×");
     }
 }

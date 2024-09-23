@@ -21,6 +21,9 @@ public class LoginPage extends StepDefinitionLogin {
     @FindBy(className = "radius")
     WebElement loginButton;
 
+    @FindBy(id = "flash")
+    WebElement logoutMsg;
+
     public void inputUsername(String username){
         usernameField.clear();
         usernameField.sendKeys(username);
@@ -34,5 +37,10 @@ public class LoginPage extends StepDefinitionLogin {
     public void clickLoginButton(){
         loginButton.click();
     }
+
+    public String getLogoutTxt(){
+        return logoutMsg.getText();
+    }
+
 
 }
