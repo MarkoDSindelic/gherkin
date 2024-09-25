@@ -3,26 +3,27 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import steps.StepDefinitionLogin;
+import steps.StepDefinition;
 
 
-public class LoginPage extends StepDefinitionLogin {
+public class LoginPage extends StepDefinition {
 
     public LoginPage(){
         PageFactory.initElements(driver, this);
     }
 
     @FindBy(id = "username")
-    WebElement usernameField;
+    public WebElement usernameField;
 
     @FindBy(id = "password")
-    WebElement passwordField;
+    public WebElement passwordField;
 
     @FindBy(className = "radius")
-    WebElement loginButton;
+    public WebElement loginButton;
 
     @FindBy(id = "flash")
-    WebElement logoutMsg;
+    public WebElement logoutMsg;
+
 
     public void inputUsername(String username){
         usernameField.clear();
@@ -41,6 +42,5 @@ public class LoginPage extends StepDefinitionLogin {
     public String getLogoutTxt(){
         return logoutMsg.getText();
     }
-
 
 }

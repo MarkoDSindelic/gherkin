@@ -6,12 +6,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class SecurePage extends LoginPage {
+public class SecureLoginPage extends LoginPage {
 
-    public SecurePage(){
+    public SecureLoginPage(){
         PageFactory.initElements(driver, this);
     }
-    @FindBy(className = ".icon-2x.icon-signout")
+    @FindBy(className = "radius")
     public WebElement logOutButton;
 
     @FindBy(id = "flash-messages")
