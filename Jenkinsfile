@@ -1,44 +1,32 @@
-
-pipeline{
-
+pipeline {
     agent any
-    tools {
-    maven 'maven_3_9_9'}
 
     stages {
-
-        stage ('Compile Stage') {
-
+        stage('Test') {
             steps {
 
-                //bat "mvn clean compile"
-                sh 'mvn clean install'
-            }
-        }
-    stage ('Test Stage') {
-
-            steps {
-
-
-                    sh 'mvn test'
-
-
-
-            }
-        }
-
-
-        stage ('Cucumber Reports') {
-
-            steps {
-                cucumber buildStatus: "UNSTABLE",
-                    fileIncludePattern: "**/cucumber.json",
-                    jsonReportDirectory: 'target'
-
+                // To run Maven on a Windows agent, use
+                bat "mvn -D clean test"
             }
 
-        }
+            post {
 
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
+                success {
+                        cucumber buildStatus: 'null',
+                        customCssFiles: '',
+                        customJsFiles: '',
+                        failedFeaturesNumber: -1,
+                        failedScenariosNumber: -1,
+                        failedStepsNumber: -1,
+                        fileIncludePattern: '**/*.json',
+                        pendingStepsNumber: -1,
+                        skippedStepsNumber: -1,
+                        sortingMethod: 'ALPHABETICAL',
+                        undefinedStepsNumber: -1
+                }
+            }
+        }
     }
-
 }
