@@ -2,6 +2,8 @@
 pipeline{
 
     agent any
+    tools {
+    maven 'maven_3_5_0'}
 
     stages {
 
@@ -9,21 +11,18 @@ pipeline{
 
             steps {
 
-                withMaven(maven: 'maven_3_5_0') {
-                    sh 'mvn clean install'
-
-                }
-
+                bat "mvn clean compile"
+                //sh 'mvn clean install'
             }
         }
     stage ('Test Stage') {
 
             steps {
 
-                withMaven(maven: 'maven_3_5_0') {
+
                     sh 'mvn test'
 
-                }
+
 
             }
         }
