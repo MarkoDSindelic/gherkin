@@ -29,7 +29,6 @@ public class CheckboxSteps {
 
         checkboxPage = new CheckboxPage(driver);
 
-        System.out.println("i did run");
 
     }
 
@@ -64,7 +63,6 @@ public class CheckboxSteps {
     @After
     public void teardown(){
         driver.quit();
-        System.out.println("i ran after");
     }
 
 }

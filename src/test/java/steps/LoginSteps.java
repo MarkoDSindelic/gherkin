@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import managers.PageObjectManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -20,6 +21,7 @@ public class LoginSteps {
     public static WebDriver driver;
     public LoginPage loginPage;
     public SecurePage securePage;
+    public PageObjectManager pageObjectManager;
 
     @Before
     public void setup(){
@@ -28,8 +30,12 @@ public class LoginSteps {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
-        loginPage = new LoginPage(driver);
-        securePage = new SecurePage(driver);
+        pageObjectManager = new PageObjectManager(driver);
+
+        loginPage = pageObjectManager.getLoginPage();
+        securePage = pageObjectManager.getSecurePage();
+
+
 
     }
 

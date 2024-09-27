@@ -1,5 +1,6 @@
 package pages;
 
+import dataProvider.ConfigFileReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,8 +10,11 @@ import steps.CheckboxSteps;
 
 public class CheckboxPage extends CheckboxSteps {
 
+    ConfigFileReader configFileReader;
+
     public CheckboxPage(WebDriver driver){
         PageFactory.initElements(driver, this);
+        configFileReader = new ConfigFileReader();
     }
 
     @FindBy(xpath = "//*[@id=\"checkboxes\"]/input[1]")
@@ -32,7 +36,8 @@ public class CheckboxPage extends CheckboxSteps {
     }
 
     public void goToCheckboxPage(){
-        driver.navigate().to("https://the-internet.herokuapp.com/checkboxes");
+
+        driver.navigate().to(configFileReader.getApplicationURL().concat("checkboxes"));
     }
 
 }
