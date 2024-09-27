@@ -1,5 +1,6 @@
 package steps;
 
+import dataProvider.ConfigFileReader;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -7,10 +8,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import managers.PageObjectManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import pages.CheckboxPage;
+
+import java.io.FileReader;
 import java.time.Duration;
 
 public class CheckboxSteps {
@@ -18,6 +22,8 @@ public class CheckboxSteps {
     public static WebDriver driver;
 
     public CheckboxPage checkboxPage;
+    public PageObjectManager pageObjectManager;
+    public ConfigFileReader configFileReader;
 
     @Before
     public void setup(){
@@ -27,14 +33,17 @@ public class CheckboxSteps {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
-        checkboxPage = new CheckboxPage(driver);
+        pageObjectManager = new PageObjectManager(driver);
+
+        checkboxPage = pageObjectManager.getCheckboxPage();
+        configFileReader = new ConfigFileReader();
 
 
     }
 
     @Given("User is on the checkbox page")
     public void user_is_on_checkbox_page(){
-        checkboxPage.goToCheckboxPage();
+        driver.navigate().to(configFileReader.getApplicationURL().concat("checkboxes"));
 
     }
     @When("User clicks checkbox 1")

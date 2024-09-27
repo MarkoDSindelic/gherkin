@@ -12,10 +12,8 @@ public class ConfigFileReader {
 
 
     public ConfigFileReader(){
+
         BufferedReader reader;
-
-
-        System.out.println(propertyFilePath);
 
         try {
 
