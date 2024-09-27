@@ -1,14 +1,15 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import steps.StepDefinition;
+import steps.LoginSteps;
 
 
-public class LoginPage extends StepDefinition {
+public class LoginPage {
 
-    public LoginPage(){
+    public LoginPage(WebDriver driver){
         PageFactory.initElements(driver, this);
     }
 

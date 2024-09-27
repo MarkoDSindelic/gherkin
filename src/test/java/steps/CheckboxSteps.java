@@ -21,18 +21,21 @@ public class CheckboxSteps {
 
     @Before
     public void setup(){
+
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
-        checkboxPage = new CheckboxPage();
+        checkboxPage = new CheckboxPage(driver);
+
+        System.out.println("i did run");
 
     }
 
     @Given("User is on the checkbox page")
     public void user_is_on_checkbox_page(){
-        driver.navigate().to("https://the-internet.herokuapp.com/checkboxes");
+        checkboxPage.goToCheckboxPage();
 
     }
     @When("User clicks checkbox 1")
@@ -61,6 +64,7 @@ public class CheckboxSteps {
     @After
     public void teardown(){
         driver.quit();
+        System.out.println("i ran after");
     }
 
 }

@@ -11,15 +11,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import pages.LoginPage;
-import pages.SecureLoginPage;
+import pages.SecurePage;
 
 import java.time.Duration;
 
-public class StepDefinition {
+public class LoginSteps {
 
     public static WebDriver driver;
     public LoginPage loginPage;
-    public SecureLoginPage securePage;
+    public SecurePage securePage;
 
     @Before
     public void setup(){
@@ -28,8 +28,8 @@ public class StepDefinition {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
-        loginPage = new LoginPage();
-        securePage = new SecureLoginPage();
+        loginPage = new LoginPage(driver);
+        securePage = new SecurePage(driver);
 
     }
 
