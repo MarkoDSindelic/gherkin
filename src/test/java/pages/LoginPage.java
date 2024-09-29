@@ -1,16 +1,23 @@
 package pages;
 
+import dataProvider.ConfigFileReader;
+import managers.FileReaderManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.FileReader;
 
 
 public class LoginPage {
 
+    WebDriver driver;
+    ConfigFileReader configFileReader;
+
     public LoginPage(WebDriver driver){
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
     @FindBy(id = "username")
@@ -46,7 +53,7 @@ public class LoginPage {
 
     public void goToLoginPage(){
 
-
+        driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL().concat("login"));
 
     }
 }

@@ -1,6 +1,7 @@
 package pages;
 
 import dataProvider.ConfigFileReader;
+import managers.FileReaderManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,12 +10,13 @@ import steps.CheckboxSteps;
 
 
 public class CheckboxPage {
-
+    WebDriver driver;
     ConfigFileReader configFileReader;
 
     public CheckboxPage(WebDriver driver){
         PageFactory.initElements(driver, this);
         configFileReader = new ConfigFileReader();
+        this.driver = driver;
 
     }
 
@@ -37,7 +39,7 @@ public class CheckboxPage {
     }
 
     public void goToCheckboxPage(){
-
+        driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL().concat("checkboxes"));
         //driver.navigate().to(configFileReader.getApplicationURL().concat("checkboxes"));
     }
 

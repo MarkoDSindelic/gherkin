@@ -42,7 +42,8 @@ public class LoginSteps {
 
     @Given("User is on the login page")
     public void user_is_on_login_page(){
-        driver.navigate().to("https://the-internet.herokuapp.com/login");
+        //driver.navigate().to("https://the-internet.herokuapp.com/login");
+        loginPage.goToLoginPage();
     }
     @When("User enters username {string}")
     public void user_enters_username(String username){ //userEnters

@@ -13,15 +13,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import pages.CheckboxPage;
-
-import java.io.FileReader;
 import java.time.Duration;
 
 public class CheckboxSteps {
 
     public static WebDriver driver;
 
+    //Pages
     public CheckboxPage checkboxPage;
+
+    //utils
     public PageObjectManager pageObjectManager;
     public ConfigFileReader configFileReader;
 
@@ -43,7 +44,8 @@ public class CheckboxSteps {
 
     @Given("User is on the checkbox page")
     public void user_is_on_checkbox_page(){
-        driver.navigate().to(configFileReader.getApplicationURL().concat("checkboxes"));
+        //driver.navigate().to(configFileReader.getApplicationURL().concat("checkboxes"));
+        checkboxPage.goToCheckboxPage();
 
     }
     @When("User clicks checkbox 1")
