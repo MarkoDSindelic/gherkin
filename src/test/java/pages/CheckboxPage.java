@@ -6,16 +6,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import steps.CheckboxSteps;
+
 
 
 public class CheckboxPage {
     WebDriver driver;
     ConfigFileReader configFileReader;
+    FileReaderManager fileReaderManager;
 
     public CheckboxPage(WebDriver driver){
         PageFactory.initElements(driver, this);
         configFileReader = new ConfigFileReader();
+
         this.driver = driver;
 
     }

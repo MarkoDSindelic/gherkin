@@ -1,5 +1,6 @@
 package steps;
 
+import cucumber.TestContext;
 import dataProvider.ConfigFileReader;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -7,40 +8,46 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import managers.PageObjectManager;
+import managers.WebDriverManagerTwo;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import pages.CheckboxPage;
-import java.time.Duration;
+
 
 public class CheckboxSteps {
 
-    public static WebDriver driver;
+    //public static WebDriver driver;
 
     //Pages
     public CheckboxPage checkboxPage;
 
     //utils
-    public PageObjectManager pageObjectManager;
-    public ConfigFileReader configFileReader;
-
-    @Before
-    public void setup(){
-
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-
-        pageObjectManager = new PageObjectManager(driver);
-
-        checkboxPage = pageObjectManager.getCheckboxPage();
-        configFileReader = new ConfigFileReader();
+//    public PageObjectManager pageObjectManager;
+//    public ConfigFileReader configFileReader;
+//    public WebDriverManagerTwo webDriverManagerTwo;
+    public TestContext testContext;
 
 
+    public CheckboxSteps(TestContext context){
+        testContext = context;
+        checkboxPage = testContext.getPageObjectManager().getCheckboxPage();
     }
+
+    
+//    @Before
+//    public void setup(){
+//
+//        webDriverManagerTwo = new WebDriverManagerTwo();
+//        driver = new WebDriverManagerTwo().createLocalDriver();
+//
+//        pageObjectManager = new PageObjectManager(driver);
+//
+//        checkboxPage = pageObjectManager.getCheckboxPage();
+//        configFileReader = new ConfigFileReader();
+//
+//
+//    }
 
     @Given("User is on the checkbox page")
     public void user_is_on_checkbox_page(){
@@ -71,9 +78,9 @@ public class CheckboxSteps {
 
 
 
-    @After
-    public void teardown(){
-        driver.quit();
-    }
+//    @After
+//    public void teardown(){
+//        driver.quit();
+//    }
 
 }

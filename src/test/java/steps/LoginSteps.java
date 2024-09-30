@@ -1,5 +1,6 @@
 package steps;
 
+import cucumber.TestContext;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -8,6 +9,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import managers.PageObjectManager;
+import managers.WebDriverManagerTwo;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -19,26 +21,33 @@ import java.time.Duration;
 public class LoginSteps {
 
     public static WebDriver driver;
-    public LoginPage loginPage;
+
     public SecurePage securePage;
-    public PageObjectManager pageObjectManager;
+//    public PageObjectManager pageObjectManager;
+//    public WebDriverManagerTwo webDriverManagerTwo;
 
-    @Before
-    public void setup(){
+    TestContext testContext;
+    LoginPage loginPage;
 
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-
-        pageObjectManager = new PageObjectManager(driver);
-
-        loginPage = pageObjectManager.getLoginPage();
-        securePage = pageObjectManager.getSecurePage();
-
-
-
+    public LoginSteps(TestContext context){
+        testContext = context;
+        loginPage = testContext.getPageObjectManager().getLoginPage();
+        securePage = testContext.getPageObjectManager().getSecurePage();
     }
+
+//    @Before
+//    public void setup(){
+//
+//        webDriverManagerTwo = new WebDriverManagerTwo();
+//        driver = webDriverManagerTwo.createLocalDriver();
+//
+//        pageObjectManager = new PageObjectManager(driver);
+//
+//        loginPage = pageObjectManager.getLoginPage();
+//        securePage = pageObjectManager.getSecurePage();
+//
+//
+//    }
 
     @Given("User is on the login page")
     public void user_is_on_login_page(){
@@ -68,10 +77,11 @@ public class LoginSteps {
     @Then("User is not logged in")
     public void user_is_not_logged_in(){
         Assert.assertTrue(loginPage.loginButton.isDisplayed());
+
     }
 
-    @After
-    public void teardown(){
-        driver.quit();
-    }
+//    @After
+//    public void teardown(){
+//        driver.quit();
+//    }
 }
