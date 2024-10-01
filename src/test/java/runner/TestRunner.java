@@ -1,12 +1,14 @@
 package runner;
 
 
-import io.cucumber.junit.Cucumber;
+//import io.cucumber.junit.Cucumber;
 import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
-import org.junit.runner.RunWith;
+//import org.junit.runner.RunWith;
 
-@RunWith(Cucumber.class)
+import java.io.File;
+
+//@RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = { "steps"},
@@ -14,8 +16,9 @@ import org.junit.runner.RunWith;
                 "html:target/cucumber-html-report",
                 "junit: target/cucumber.xml",
                 "pretty"},
-        monochrome = true
+        monochrome = true //makes console output more readable 
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
+
 
 }

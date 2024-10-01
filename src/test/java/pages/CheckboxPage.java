@@ -12,7 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 public class CheckboxPage {
     WebDriver driver;
     ConfigFileReader configFileReader;
-    FileReaderManager fileReaderManager;
 
     public CheckboxPage(WebDriver driver){
         PageFactory.initElements(driver, this);

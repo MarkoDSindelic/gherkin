@@ -1,33 +1,25 @@
 package steps;
 
 import cucumber.TestContext;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import managers.PageObjectManager;
-import managers.WebDriverManagerTwo;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import pages.LoginPage;
 import pages.SecurePage;
 
-import java.time.Duration;
-
 public class LoginSteps {
 
-    public static WebDriver driver;
+    //public static WebDriver driver;
 
-    public SecurePage securePage;
+
 //    public PageObjectManager pageObjectManager;
 //    public WebDriverManagerTwo webDriverManagerTwo;
 
     TestContext testContext;
     LoginPage loginPage;
+    SecurePage securePage;
 
     public LoginSteps(TestContext context){
         testContext = context;

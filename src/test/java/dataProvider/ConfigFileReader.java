@@ -68,4 +68,5 @@ public class ConfigFileReader {
         if(windowSize != null) return Boolean.valueOf(windowSize);
         return true;
     }
+
 }
