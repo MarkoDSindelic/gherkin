@@ -31,7 +31,7 @@ public class LoginSteps {
     }
 
 //    @Before
-//    public void setup(){
+//    public void setUp(){
 //
 //        webDriverManagerTwo = new WebDriverManagerTwo();
 //        driver = webDriverManagerTwo.createLocalDriver();
@@ -48,6 +48,8 @@ public class LoginSteps {
     public void user_is_on_login_page(){
         //driver.navigate().to("https://the-internet.herokuapp.com/login");
         loginPage.goToLoginPage();
+        //utility.goToPage(loginPage);
+
     }
     @When("User enters username {string}")
     public void user_enters_username(String username){

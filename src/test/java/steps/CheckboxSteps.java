@@ -22,6 +22,7 @@ public class CheckboxSteps {
 //    public PageObjectManager pageObjectManager;
 //    public ConfigFileReader configFileReader;
 //    public WebDriverManagerTwo webDriverManagerTwo;
+
     public TestContext testContext;
     public Utility utility;
 
@@ -34,7 +35,7 @@ public class CheckboxSteps {
 
     
 //    @Before
-//    public void setup(){
+//    public void setUp(){
 //
 //        webDriverManagerTwo = new WebDriverManagerTwo();
 //        driver = new WebDriverManagerTwo().createLocalDriver();
@@ -51,6 +52,7 @@ public class CheckboxSteps {
     public void user_is_on_checkbox_page(){
         //driver.navigate().to(configFileReader.getApplicationURL().concat("checkboxes"));
         checkboxPage.goToCheckboxPage();
+        //utility.goToPage(checkboxPage);
 
     }
     @When("User clicks checkbox 1")
@@ -74,7 +76,8 @@ public class CheckboxSteps {
 
     @And("Checkbox 2 is unchecked")
     public void checkbox_two_is_unchecked(){
-        Assert.assertFalse(checkboxPage.checkboxTwo.isSelected());
+        utility.isNotSelected(checkboxPage.checkboxTwo);
+        //Assert.assertFalse(checkboxPage.checkboxTwo.isSelected());
     }
 
 

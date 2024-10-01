@@ -1,11 +1,36 @@
 package utility;
 
+import cucumber.TestContext;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import pages.CheckboxPage;
+import pages.LoginPage;
 
 public class Utility {
 
-    WebElement webElement;
+
+    WebDriver driver;
+
+    public Utility(WebDriver driver){
+        this.driver = driver;
+    }
+
+//    public void goToPage(Object object){
+//
+//
+//        if(object instanceof LoginPage){
+//
+//            driver.navigate().to("https://the-internet.herokuapp.com/login");
+//
+//        } else if (object instanceof CheckboxPage) {
+//
+//            driver.navigate().to("https://the-internet.herokuapp.com/checkboxes");
+//        }
+//
+//    }
+
+
 
     /* Page Actions */
 
@@ -35,8 +60,14 @@ public class Utility {
         Assert.assertEquals(actual, expected);
     }
 
+
+
     public void isSelected(WebElement webElement){
         Assert.assertTrue(webElement.isSelected());
+    }
+
+    public void isNotSelected(WebElement webElement){
+        Assert.assertFalse(webElement.isSelected());
     }
 
 }

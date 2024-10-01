@@ -13,17 +13,16 @@ public class Hooks {
     }
 
     @Before
-    public void setup(){
+    public void setUp(){
 
         //driver is already set up through test context
-        System.out.println("Before hook");
-
+        //System.out.println("Before hook");
 
 
     }
 
     @After
-    public void teardown(){
+    public void tearDown(){
 
         System.out.println("After hook");
 

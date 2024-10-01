@@ -1,7 +1,6 @@
 package dataProvider;
 
 import enums.DriverType;
-import enums.EnvironmentType;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

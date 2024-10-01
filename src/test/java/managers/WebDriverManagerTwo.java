@@ -1,7 +1,6 @@
 package managers;
 
 import enums.DriverType;
-import enums.EnvironmentType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,28 +13,28 @@ public class WebDriverManagerTwo {
 
     private WebDriver driver;
     private static DriverType driverType;
-    private static EnvironmentType environmentType;
+
 
 
     public WebDriverManagerTwo(){
         driverType = FileReaderManager.getInstance().getConfigFileReader().getBrowser();
-        environmentType = FileReaderManager.getInstance().getConfigFileReader().getEnvironment();
+
     }
 
-    private WebDriver cerateRemoteDriver(){
-        throw new RuntimeException("RemoteWebDriver is not yet implemented");
-    }
 
     public WebDriver createLocalDriver(){
 
         switch (driverType){
-            case FIREFOX: driver = new FirefoxDriver();
+            case FIREFOX:
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
             break;
             case CHROME:
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
                 break;
             case EDGE:
+                WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
                 break;
         }
