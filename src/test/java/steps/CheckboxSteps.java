@@ -5,8 +5,10 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import jdk.jshell.execution.Util;
 import org.testng.Assert;
 import pages.CheckboxPage;
+import utility.Utility;
 
 
 public class CheckboxSteps {
@@ -21,11 +23,13 @@ public class CheckboxSteps {
 //    public ConfigFileReader configFileReader;
 //    public WebDriverManagerTwo webDriverManagerTwo;
     public TestContext testContext;
+    public Utility utility;
 
 
     public CheckboxSteps(TestContext context){
         testContext = context;
         checkboxPage = testContext.getPageObjectManager().getCheckboxPage();
+        utility = testContext.getUtility();
     }
 
     
@@ -52,16 +56,19 @@ public class CheckboxSteps {
     @When("User clicks checkbox 1")
     public void user_clicks_checkbox_one(){
 
-        checkboxPage.clickCheckbox(1);
+        utility.clickAction(checkboxPage.checkboxOne);
+        //checkboxPage.clickCheckbox(1);
 
     }
     @And("User clicks checkbox 2")
     public void user_clicks_checkbox_two(){
-        checkboxPage.clickCheckbox(2);
+        utility.clickAction(checkboxPage.checkboxTwo);
+        //checkboxPage.clickCheckbox(2);
     }
     @Then("Checkbox 1 is checked")
     public void checkbox_one_is_checked(){
-        Assert.assertTrue(checkboxPage.checkboxOne.isSelected());
+        utility.isSelected(checkboxPage.checkboxOne);
+        //Assert.assertTrue(checkboxPage.checkboxOne.isSelected());
 
     }
 
