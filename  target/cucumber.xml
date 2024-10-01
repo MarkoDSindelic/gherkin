@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="44.941" tests="3" skipped="0" failures="0" errors="0">
-<testcase classname="Checkboxes" name="User can click on checkboxes" time="18.66">
+<testsuite name="Cucumber" time="14.554" tests="3" skipped="0" failures="0" errors="0">
+<testcase classname="Checkboxes" name="User can click on checkboxes" time="4.594">
 <system-out><![CDATA[
 Given User is on the checkbox page..........................................passed
 When User clicks checkbox 1.................................................passed
@@ -9,7 +9,7 @@ Then Checkbox 1 is checked..................................................pass
 And Checkbox 2 is unchecked.................................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Login" name="User can login with valid credentials" time="13.244">
+<testcase classname="Login" name="User can login with valid credentials" time="5.219">
 <system-out><![CDATA[
 Given User is on the login page.............................................passed
 When User enters username "tomsmith"........................................passed
@@ -18,7 +18,7 @@ And User clicks login button................................................pass
 Then User is logged in......................................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Login" name="User cannot login with invalid credentials" time="12.816">
+<testcase classname="Login" name="User cannot login with invalid credentials" time="4.5">
 <system-out><![CDATA[
 Given User is on the login page.............................................passed
 When User enters username "someUsername"....................................passed

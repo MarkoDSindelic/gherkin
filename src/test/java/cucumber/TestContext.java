@@ -13,7 +13,7 @@ public class TestContext {
     public TestContext(){
         webDriverManagerTwo = new WebDriverManagerTwo();
         pageObjectManager = new PageObjectManager(webDriverManagerTwo.createLocalDriver());
-        utility = new Utility(webDriverManagerTwo.createLocalDriver());
+        utility = new Utility();
     }
 
     public WebDriverManagerTwo getWebDriverManagerTwo(){

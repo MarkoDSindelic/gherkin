@@ -10,10 +10,8 @@ import pages.LoginPage;
 public class Utility {
 
 
-    WebDriver driver;
+    public Utility(){
 
-    public Utility(WebDriver driver){
-        this.driver = driver;
     }
 
 //    public void goToPage(Object object){
