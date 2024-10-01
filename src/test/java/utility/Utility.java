@@ -1,11 +1,9 @@
 package utility;
 
-import cucumber.TestContext;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import pages.CheckboxPage;
-import pages.LoginPage;
+
 
 public class Utility {
 
@@ -13,20 +11,6 @@ public class Utility {
     public Utility(){
 
     }
-
-//    public void goToPage(Object object){
-//
-//
-//        if(object instanceof LoginPage){
-//
-//            driver.navigate().to("https://the-internet.herokuapp.com/login");
-//
-//        } else if (object instanceof CheckboxPage) {
-//
-//            driver.navigate().to("https://the-internet.herokuapp.com/checkboxes");
-//        }
-//
-//    }
 
 
 

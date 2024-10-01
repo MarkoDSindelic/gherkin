@@ -1,6 +1,7 @@
 package steps;
 
 import cucumber.TestContext;
+import dataProvider.ConfigFileReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -52,9 +53,9 @@ public class CheckboxSteps {
     public void user_is_on_checkbox_page(){
         //driver.navigate().to(configFileReader.getApplicationURL().concat("checkboxes"));
         checkboxPage.goToCheckboxPage();
-        //utility.goToPage(checkboxPage);
 
     }
+
     @When("User clicks checkbox 1")
     public void user_clicks_checkbox_one(){
 
@@ -62,11 +63,13 @@ public class CheckboxSteps {
         //checkboxPage.clickCheckbox(1);
 
     }
+
     @And("User clicks checkbox 2")
     public void user_clicks_checkbox_two(){
         utility.clickAction(checkboxPage.checkboxTwo);
         //checkboxPage.clickCheckbox(2);
     }
+
     @Then("Checkbox 1 is checked")
     public void checkbox_one_is_checked(){
         utility.isSelected(checkboxPage.checkboxOne);

@@ -52,7 +52,6 @@ public class ConfigFileReader {
     }
 
 
-    
 
     public Boolean getBrowserWindowSize(){
 
