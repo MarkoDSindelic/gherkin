@@ -10,7 +10,7 @@ import java.util.Properties;
 public class ConfigFileReader {
 
     private Properties properties;
-    private final String propertyFilePath = "configs/Configuration.properties";
+    private final String propertyFilePath = "configs\\Configuration.properties";
 
 
     public ConfigFileReader(){
@@ -20,7 +20,7 @@ public class ConfigFileReader {
         try {
 
 
-            reader = new BufferedReader(new FileReader("configs\\Configuration.properties"));
+            reader = new BufferedReader(new FileReader( propertyFilePath/*"configs\\Configuration.properties"*/));
             properties = new Properties();
 
             try {
@@ -44,9 +44,9 @@ public class ConfigFileReader {
     public DriverType getBrowser(){
 
         String browserName = properties.getProperty("browser");
-        if(browserName == null || browserName.equals("chrome")) return DriverType.CHROME;
+        if(browserName == null || browserName.equalsIgnoreCase("chrome")) return DriverType.CHROME;
         else if(browserName.equalsIgnoreCase("firefox")) return DriverType.FIREFOX;
-        else if(browserName.equals("edge")) return DriverType.EDGE;
+        else if(browserName.equalsIgnoreCase("edge")) return DriverType.EDGE;
         else throw new RuntimeException("Browser Name Key value in Configuration.properties is not matched : " + browserName);
 
     }

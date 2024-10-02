@@ -22,7 +22,7 @@ public class WebDriverManagerTwo {
     }
 
 
-    public WebDriver createLocalDriver(){
+    public WebDriver createDriver(){
 
         switch (driverType){
             case FIREFOX:
@@ -39,7 +39,9 @@ public class WebDriverManagerTwo {
                 break;
         }
         if(FileReaderManager.getInstance().getConfigFileReader().getBrowserWindowSize()) driver.manage().window().maximize();
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
         return driver;
     }
 
