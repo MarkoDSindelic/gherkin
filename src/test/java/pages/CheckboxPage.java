@@ -29,7 +29,7 @@ public class CheckboxPage {
 
 
 
-
+    //no longer used
     public void clickCheckbox(Integer num){
 
         if (num == 1 ){

@@ -2,6 +2,7 @@ package managers;
 
 import org.openqa.selenium.WebDriver;
 import pages.CheckboxPage;
+import pages.DropdownPage;
 import pages.LoginPage;
 import pages.SecurePage;
 
@@ -11,6 +12,7 @@ public class PageObjectManager {
     CheckboxPage checkboxPage;
     LoginPage loginPage;
     SecurePage securePage;
+    DropdownPage dropdownPage;
 
     public PageObjectManager(WebDriver driver){
         this.driver = driver;
@@ -28,6 +30,10 @@ public class PageObjectManager {
 
     public SecurePage getSecurePage(){
         return (securePage == null) ? securePage = new SecurePage(driver) : securePage;
+    }
+
+    public DropdownPage getDropdownPage(){
+        return (dropdownPage == null) ? dropdownPage = new DropdownPage(driver) : dropdownPage;
     }
 
 }
