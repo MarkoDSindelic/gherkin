@@ -29,7 +29,8 @@ public class DropdownSteps {
 
     @When("user clicks the menu and selects {string}")
     public void user_clicks_the_menu_and_selects_value(String value){
-        dropdownPage.selectOption(value);
+        //dropdownPage.selectOption(value);
+        utility.selectDropdownValue(dropdownPage.dropdown, value);
     }
 
     @Then("Option 1 is selected {string}")

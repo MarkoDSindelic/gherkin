@@ -19,7 +19,7 @@ public class DropdownPage {
     }
 
     @FindBy(id = "dropdown")
-    WebElement dropdown;
+    public WebElement dropdown;
 
     public void selectOption(String value){
         Select obj = new Select(dropdown);

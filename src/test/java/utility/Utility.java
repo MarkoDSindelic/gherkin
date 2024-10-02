@@ -2,6 +2,7 @@ package utility;
 
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 
@@ -24,12 +25,28 @@ public class Utility {
         webElement.sendKeys(data);
     }
 
+    public void selectDropdownValue(WebElement element, String value){
+        Select select = new Select(element);
+        select.selectByValue(value);
+    }
+
     //I probably don't need this one
     public String getText(WebElement webElement){
         return webElement.getText();
     }
 
+    //Login function
+    public void login(WebElement usernameField,
+                      WebElement passwordField,
+                      WebElement loginBtn,
+                      String username,
+                      String password) {
 
+        usernameField.sendKeys(username);
+        passwordField.sendKeys(password);
+        loginBtn.click();
+
+    }
 
     /* Assertions */
 
@@ -41,6 +58,7 @@ public class Utility {
         String actual = webElement.getText();
         Assert.assertEquals(actual, expected);
     }
+
 
 
 
