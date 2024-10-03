@@ -77,9 +77,6 @@ public class LoginSteps {
 
         //Assert.assertEquals(utility.getText(securePage.loginMsg), "You logged into a secure area!\n" + "×");
         //Assert.assertTrue(securePage.logOutButton.isDisplayed());
-
-
-
     }
     @Then("User is not logged in")
     public void user_is_not_logged_in(){

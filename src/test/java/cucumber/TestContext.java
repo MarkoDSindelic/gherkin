@@ -1,23 +1,23 @@
 package cucumber;
 
 import managers.PageObjectManager;
-import managers.WebDriverManagerTwo;
+import managers.CustomWebDriverManager;
 import utility.Utility;
 
 public class TestContext {
 
-    private WebDriverManagerTwo webDriverManagerTwo;
+    private CustomWebDriverManager customWebDriverManager;
     private PageObjectManager pageObjectManager;
     private Utility utility;
 
     public TestContext(){
-        webDriverManagerTwo = new WebDriverManagerTwo();
-        pageObjectManager = new PageObjectManager(webDriverManagerTwo.createDriver());
+        customWebDriverManager = new CustomWebDriverManager();
+        pageObjectManager = new PageObjectManager(customWebDriverManager.createDriver());
         utility = new Utility();
     }
 
-    public WebDriverManagerTwo getWebDriverManagerTwo(){
-        return webDriverManagerTwo;
+    public CustomWebDriverManager getWebDriverManagerTwo(){
+        return customWebDriverManager;
     }
 
     public PageObjectManager getPageObjectManager(){

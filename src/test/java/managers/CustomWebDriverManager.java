@@ -9,14 +9,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
 
-public class WebDriverManagerTwo {
+public class CustomWebDriverManager {
 
     private WebDriver driver;
     private static DriverType driverType;
 
 
 
-    public WebDriverManagerTwo(){
+    public CustomWebDriverManager(){
         driverType = FileReaderManager.getInstance().getConfigFileReader().getBrowser();
 
     }
