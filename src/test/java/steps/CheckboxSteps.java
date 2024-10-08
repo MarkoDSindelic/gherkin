@@ -14,15 +14,8 @@ import utility.Utility;
 
 public class CheckboxSteps {
 
-    //public static WebDriver driver;
 
-    //Pages
     public CheckboxPage checkboxPage;
-
-    //utils
-//    public PageObjectManager pageObjectManager;
-//    public ConfigFileReader configFileReader;
-//    public WebDriverManagerTwo webDriverManagerTwo;
 
     public TestContext testContext;
     public Utility utility;

@@ -11,18 +11,18 @@ import java.time.Duration;
 
 public class CustomWebDriverManager {
 
-    private WebDriver driver;
+    private static WebDriver driver;
     private static DriverType driverType;
 
 
 
     public CustomWebDriverManager(){
         driverType = FileReaderManager.getInstance().getConfigFileReader().getBrowser();
-
     }
 
 
-    public WebDriver createDriver(){
+
+    private static WebDriver createDriver(){
 
         switch (driverType){
             case FIREFOX:
@@ -43,6 +43,10 @@ public class CustomWebDriverManager {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
         return driver;
+    }
+
+    public WebDriver getDriver(){
+       return createDriver();
     }
 
     public void quitDriver(){

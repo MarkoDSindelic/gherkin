@@ -5,18 +5,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.testng.Assert;
 import pages.LoginPage;
 import pages.SecurePage;
 import utility.Utility;
 
 public class LoginSteps {
 
-    //public static WebDriver driver;
-
-
-//    public PageObjectManager pageObjectManager;
-//    public WebDriverManagerTwo webDriverManagerTwo;
 
     TestContext testContext;
     LoginPage loginPage;
@@ -30,25 +24,22 @@ public class LoginSteps {
         utility = testContext.getUtility();
     }
 
-//    @Before
-//    public void setUp(){
-//
-//        webDriverManagerTwo = new WebDriverManagerTwo();
-//        driver = webDriverManagerTwo.createLocalDriver();
-//
-//        pageObjectManager = new PageObjectManager(driver);
-//
-//        loginPage = pageObjectManager.getLoginPage();
-//        securePage = pageObjectManager.getSecurePage();
-//
-//
-//    }
 
     @Given("User is on the login page")
     public void user_is_on_login_page(){
         //driver.navigate().to("https://the-internet.herokuapp.com/login");
         loginPage.goToLoginPage();
         //utility.goToPage(loginPage);
+
+        /* Just some tests */
+        /*System.out.println("***************");
+        utility.goToPage(loginPage);
+        System.out.println("***************");
+        utility.goToPage(securePage);
+        System.out.println("***************");
+        utility.goToPage(testContext);
+        System.out.println("***************");*/
+
 
     }
     @When("User enters username {string}")
@@ -66,6 +57,7 @@ public class LoginSteps {
     public void user_clicks_login_button(){
         utility.clickAction(loginPage.loginButton);
         //loginPage.clickLoginButton();
+
     }
     @Then("User is logged in") //Move to a new class?
     public void user_is_logged_in(){
@@ -84,10 +76,4 @@ public class LoginSteps {
         utility.isElementDisplayed(loginPage.loginButton);
     }
 
-
-
-    //    @After
-//    public void teardown(){
-//        driver.quit();
-//    }
 }

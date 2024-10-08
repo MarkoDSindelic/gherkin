@@ -18,7 +18,7 @@ public class PageObjectManager {
         this.driver = driver;
     }
 
-    public LoginPage getLoginPage(){
+    public  LoginPage getLoginPage(){
 
         return (loginPage == null) ? loginPage = new LoginPage(driver) : loginPage;
 

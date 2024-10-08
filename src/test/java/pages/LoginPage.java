@@ -13,7 +13,6 @@ import java.io.FileReader;
 public class LoginPage {
 
     WebDriver driver;
-    ConfigFileReader configFileReader;
 
     public LoginPage(WebDriver driver){
         PageFactory.initElements(driver, this);

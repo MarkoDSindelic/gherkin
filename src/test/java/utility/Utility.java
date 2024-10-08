@@ -4,6 +4,8 @@ package utility;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import pages.LoginPage;
+import pages.SecurePage;
 
 
 public class Utility {
@@ -13,6 +15,24 @@ public class Utility {
 
     }
 
+    //Nice try, think harder...
+   /* public void goToPage(Object object){
+
+
+        if(object instanceof LoginPage){
+
+            System.out.println("I am login page");
+            //driver.navigate().to(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL().concat("login"));
+
+        } else if (object instanceof SecurePage) {
+
+            System.out.println("I am secure page");
+
+        } else {
+            System.out.println("I am not a page");
+        }
+
+    }*/
 
 
     /* Page Actions */

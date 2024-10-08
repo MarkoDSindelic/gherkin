@@ -19,7 +19,6 @@ public class ConfigFileReader {
 
         try {
 
-
             reader = new BufferedReader(new FileReader( propertyFilePath/*"configs\\Configuration.properties"*/));
             properties = new Properties();
 
@@ -29,6 +28,7 @@ public class ConfigFileReader {
             }catch (IOException e){
                 e.printStackTrace();
             }
+
         }catch(IOException e){
             e.printStackTrace();
             throw new RuntimeException("Configuration.properties not found at " + propertyFilePath);
@@ -47,10 +47,9 @@ public class ConfigFileReader {
         if(browserName == null || browserName.equalsIgnoreCase("chrome")) return DriverType.CHROME;
         else if(browserName.equalsIgnoreCase("firefox")) return DriverType.FIREFOX;
         else if(browserName.equalsIgnoreCase("edge")) return DriverType.EDGE;
-        else throw new RuntimeException("Browser Name Key value in Configuration.properties is not matched : " + browserName);
+        else throw new RuntimeException("Browser not found : " + browserName);
 
     }
-
 
 
     public Boolean getBrowserWindowSize(){

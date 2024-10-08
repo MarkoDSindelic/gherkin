@@ -12,11 +12,11 @@ public class TestContext {
 
     public TestContext(){
         customWebDriverManager = new CustomWebDriverManager();
-        pageObjectManager = new PageObjectManager(customWebDriverManager.createDriver());
+        pageObjectManager = new PageObjectManager(customWebDriverManager.getDriver());
         utility = new Utility();
     }
 
-    public CustomWebDriverManager getWebDriverManagerTwo(){
+    public CustomWebDriverManager getWebCustomDriverManager(){
         return customWebDriverManager;
     }
 
