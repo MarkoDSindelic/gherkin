@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
 
 
 public class CheckboxPage {
@@ -27,16 +28,26 @@ public class CheckboxPage {
     @FindBy(xpath = "//*[@id=\"checkboxes\"]/input[2]")
     public WebElement checkboxTwo;
 
+    @FindBy(css = "input[type='checkbox']")
+    public List<WebElement> checkboxes;
 
-
-    //no longer used
-    public void clickCheckbox(Integer num){
-
-        if (num == 1 ){
-            checkboxOne.click();
-        } else if (num == 2) {
-            checkboxTwo.click();
+    public void clickAllCheckboxes(){
+        for (int i = 0; i < checkboxes.size() - 1; i++) {
+            checkboxes.get(i).click();
         }
+    }
+
+    public void clickCheckbox(String num){
+
+        int number = Integer.parseInt(num) - 1;
+
+            checkboxes.get(number).click();
+
+//        if (number == 1 ){
+//            checkboxes.get(0).click();
+//        } else if (number == 2) {
+//            checkboxes.get(1).click();
+//        }
     }
 
     public void goToCheckboxPage(){
