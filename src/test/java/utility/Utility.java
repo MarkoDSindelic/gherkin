@@ -4,8 +4,6 @@ package utility;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import pages.LoginPage;
-import pages.SecurePage;
 
 
 public class Utility {
@@ -61,7 +59,8 @@ public class Utility {
                       WebElement loginBtn,
                       String username,
                       String password) {
-
+        usernameField.clear();
+        passwordField.clear();
         usernameField.sendKeys(username);
         passwordField.sendKeys(password);
         loginBtn.click();

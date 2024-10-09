@@ -49,17 +49,19 @@ public class CheckboxSteps {
 
     }
 
-    @When("User clicks checkbox 1")
-    public void user_clicks_checkbox_one(){
+    @When("User clicks checkbox one {string}")
+    public void user_clicks_checkbox_one(String num){
 
-        utility.clickAction(checkboxPage.checkboxOne);
-        //checkboxPage.clickCheckbox(1);
+        checkboxPage.clickCheckbox(num);
+        //utility.clickAction(checkboxPage.checkboxOne);
+        //checkboxPage.clickAllCheckboxes();
 
     }
 
-    @And("User clicks checkbox 2")
-    public void user_clicks_checkbox_two(){
-        utility.clickAction(checkboxPage.checkboxTwo);
+    @And("User clicks checkbox two {string}")
+    public void user_clicks_checkbox_two(String num){
+        checkboxPage.clickCheckbox(num);
+        //utility.clickAction(checkboxPage.checkboxTwo);
         //checkboxPage.clickCheckbox(2);
     }
 
