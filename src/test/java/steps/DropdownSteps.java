@@ -34,10 +34,10 @@ public class DropdownSteps extends Utility {
 
     @Then("Option 1 is selected {string}")
     public void option_one_is_selected(String value){
-
+       String actual = dropdownPage.getSelectText(value);
        String expected = "Option 1";
 
-       dropdownPage.isEqual(dropdownPage.dropdown, expected);
+       Assert.assertEquals(actual, expected);
 
     }
 
@@ -45,6 +45,7 @@ public class DropdownSteps extends Utility {
     public void option_two_is_selected(String value){
         String actual =  dropdownPage.getSelectText(value);
         String expected = "Option 2";
+
         Assert.assertEquals(actual, expected);
     }
 
