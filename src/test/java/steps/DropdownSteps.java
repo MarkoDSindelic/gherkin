@@ -11,7 +11,6 @@ import utility.Utility;
 public class DropdownSteps extends Utility {
 
     public DropdownPage dropdownPage;
-
     public TestContext testContext;
 
 
