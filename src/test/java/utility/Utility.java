@@ -5,8 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.util.List;
 
 public class Utility {
+
 
 
     public Utility(){
@@ -16,19 +18,18 @@ public class Utility {
     //Nice try, think harder...
    /* public void goToPage(Object object){
 
-
         if(object instanceof LoginPage){
 
             System.out.println("I am login page");
             //driver.navigate().to(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL().concat("login"));
 
-        } else if (object instanceof SecurePage) {
+        } *//* else if (object instanceof SecurePage) {
 
             System.out.println("I am secure page");
 
         } else {
             System.out.println("I am not a page");
-        }
+        } *//*
 
     }*/
 
@@ -48,9 +49,12 @@ public class Utility {
         select.selectByValue(value);
     }
 
-    //I probably don't need this one
-    public String getText(WebElement webElement){
-        return webElement.getText();
+    public void clickCheckbox(List<WebElement> list, String num) {
+
+        int checkboxNumber = Integer.parseInt(num) - 1;
+
+        list.get(checkboxNumber).click();
+
     }
 
     //Login function
@@ -77,8 +81,6 @@ public class Utility {
         String actual = webElement.getText();
         Assert.assertEquals(actual, expected);
     }
-
-
 
 
     public void isSelected(WebElement webElement){

@@ -8,12 +8,12 @@ public class TestContext {
 
     private CustomWebDriverManager customWebDriverManager;
     private PageObjectManager pageObjectManager;
-    private Utility utility;
+    //private Utility utility;
 
     public TestContext(){
         customWebDriverManager = new CustomWebDriverManager();
         pageObjectManager = new PageObjectManager(customWebDriverManager.getDriver());
-        utility = new Utility();
+        //utility = new Utility();
     }
 
     public CustomWebDriverManager getWebCustomDriverManager(){
@@ -24,8 +24,8 @@ public class TestContext {
         return pageObjectManager;
     }
 
-    public Utility getUtility(){
+   /* public Utility getUtility(){
         return utility;
-    }
+    }*/
 
 }

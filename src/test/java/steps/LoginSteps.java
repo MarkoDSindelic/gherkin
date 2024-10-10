@@ -21,15 +21,18 @@ public class LoginSteps {
         testContext = context;
         loginPage = testContext.getPageObjectManager().getLoginPage();
         securePage = testContext.getPageObjectManager().getSecurePage();
-        utility = testContext.getUtility();
+        //utility = testContext.getUtility();
     }
 
 
     @Given("User is on the login page")
     public void user_is_on_login_page(){
-        //driver.navigate().to("https://the-internet.herokuapp.com/login");
+
         loginPage.goToLoginPage();
+
+        //driver.navigate().to("https://the-internet.herokuapp.com/login");
         //utility.goToPage(loginPage);
+
 
         /* Just some tests */
         /*System.out.println("***************");
@@ -40,23 +43,24 @@ public class LoginSteps {
         utility.goToPage(testContext);
         System.out.println("***************");*/
 
-
     }
+
     @When("User enters username {string}")
     public void user_enters_username(String username){
-        utility.enterData(loginPage.usernameField, username);
-        //loginPage.inputUsername(username);
+
+        loginPage.enterData(loginPage.usernameField, username);
 
     }
+
     @And("User enters password {string}")
     public void user_enters_password(String password){
-        utility.enterData(loginPage.passwordField, password);
-        //loginPage.inputPassword(password);
+
+        loginPage.enterData(loginPage.passwordField, password);
     }
     @And("User clicks login button")
     public void user_clicks_login_button(){
-        utility.clickAction(loginPage.loginButton);
-        //loginPage.clickLoginButton();
+
+        loginPage.clickAction(loginPage.loginButton);
 
     }
     @Then("User is logged in") //Move to a new class?
@@ -64,16 +68,13 @@ public class LoginSteps {
 
         String expected = "You logged into a secure area!\n" + "×";
 
-        utility.isEqual(securePage.loginMsg, expected);
-        utility.isElementDisplayed(securePage.logOutButton);
-
-        //Assert.assertEquals(utility.getText(securePage.loginMsg), "You logged into a secure area!\n" + "×");
-        //Assert.assertTrue(securePage.logOutButton.isDisplayed());
+        loginPage.isEqual(loginPage.loginMsg, expected);
+        loginPage.isElementDisplayed(securePage.logOutButton);
     }
     @Then("User is not logged in")
     public void user_is_not_logged_in(){
-        //Assert.assertTrue(loginPage.loginButton.isDisplayed());
-        utility.isElementDisplayed(loginPage.loginButton);
+
+        loginPage.isElementDisplayed(loginPage.loginButton);
     }
 
 }
