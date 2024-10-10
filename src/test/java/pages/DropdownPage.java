@@ -1,6 +1,5 @@
 package pages;
 
-import dataProvider.ConfigFileReader;
 import managers.FileReaderManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
