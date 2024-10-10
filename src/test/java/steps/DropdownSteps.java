@@ -6,19 +6,17 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 import pages.DropdownPage;
-import utility.Utility;
 
 public class DropdownSteps {
 
     public DropdownPage dropdownPage;
 
     public TestContext testContext;
-    public Utility utility;
+
 
     public DropdownSteps(TestContext context){
         testContext = context;
         dropdownPage = testContext.getPageObjectManager().getDropdownPage();
-        utility = testContext.getUtility();
 
     }
 
@@ -29,8 +27,8 @@ public class DropdownSteps {
 
     @When("user clicks the menu and selects {string}")
     public void user_clicks_the_menu_and_selects_value(String value){
-        //dropdownPage.selectOption(value);
-        utility.selectDropdownValue(dropdownPage.dropdown, value);
+
+        dropdownPage.selectDropdownValue(dropdownPage.dropdown, value);
     }
 
     @Then("Option 1 is selected {string}")

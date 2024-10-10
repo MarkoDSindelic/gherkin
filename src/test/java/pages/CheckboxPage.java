@@ -6,11 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utility.Utility;
 
 import java.util.List;
 
 
-public class CheckboxPage {
+public class CheckboxPage extends Utility {
     WebDriver driver;
     ConfigFileReader configFileReader;
 
@@ -37,7 +38,7 @@ public class CheckboxPage {
         }
     }
 
-    public void clickCheckbox(String num){
+  /*  public void clickCheckbox(String num){
 
         int number = Integer.parseInt(num) - 1;
 
@@ -48,7 +49,7 @@ public class CheckboxPage {
 //        } else if (number == 2) {
 //            checkboxes.get(1).click();
 //        }
-    }
+    }*/
 
     public void goToCheckboxPage(){
         driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL().concat("checkboxes"));
