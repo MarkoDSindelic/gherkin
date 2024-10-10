@@ -24,7 +24,6 @@ public class CheckboxSteps {
     public CheckboxSteps(TestContext context){
         testContext = context;
         checkboxPage = testContext.getPageObjectManager().getCheckboxPage();
-        //utility = testContext.getUtility();
     }
 
 
@@ -37,10 +36,9 @@ public class CheckboxSteps {
 
     @When("User clicks checkbox one {string}")
     public void user_clicks_checkbox_one(String num){
-
-        checkboxPage.clickCheckbox(checkboxPage.checkboxes, num);
         //utility.clickAction(checkboxPage.checkboxOne);
         //checkboxPage.clickAllCheckboxes();
+        checkboxPage.clickCheckbox(checkboxPage.checkboxes, num);
 
 
     }
@@ -48,24 +46,23 @@ public class CheckboxSteps {
     @And("User clicks checkbox two {string}")
     public void user_clicks_checkbox_two(String num){
         //checkboxPage.clickCheckbox(num);
-        //utility.clickAction(checkboxPage.checkboxTwo);
-        //checkboxPage.clickCheckbox(2);
+
         checkboxPage.clickCheckbox(checkboxPage.checkboxes, num);
 
     }
 
-    @Then("Checkbox 1 is checked")
-    public void checkbox_one_is_checked(){
+    @Then("Checkbox one is checked {string}")
+    public void checkbox_one_is_checked(String num){
         //utility.isSelected(checkboxPage.checkboxOne);
         //Assert.assertTrue(checkboxPage.checkboxOne.isSelected());
-        checkboxPage.isSelected(checkboxPage.checkboxes.get(0));
+        checkboxPage.isSelected(checkboxPage.checkboxes.get(Integer.parseInt(num )-1));
     }
 
-    @And("Checkbox 2 is unchecked")
-    public void checkbox_two_is_unchecked(){
+    @And("Checkbox two is unchecked {string}")
+    public void checkbox_two_is_unchecked(String num){
         //utility.isNotSelected(checkboxPage.checkboxTwo);
         //Assert.assertFalse(checkboxPage.checkboxTwo.isSelected());
-        checkboxPage.isNotSelected(checkboxPage.checkboxes.get(1));
+        checkboxPage.isNotSelected(checkboxPage.checkboxes.get(Integer.parseInt(num) -1));
     }
 
 }

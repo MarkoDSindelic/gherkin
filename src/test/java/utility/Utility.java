@@ -26,9 +26,14 @@ public class Utility {
         webElement.sendKeys(data);
     }
 
-    public void selectDropdownValue(WebElement element, String value){
+    public void selectDropdownByText(WebElement element, String text){
         Select select = new Select(element);
-        select.selectByValue(value);
+
+        for (int i = 0; i < select.getOptions().size() ; i++) {
+            if(select.getOptions().get(i).getText().equals(text)){
+                select.getOptions().get(i).click();
+            }
+        }
     }
 
     public void clickCheckbox(List<WebElement> list, String num) {
@@ -51,6 +56,22 @@ public class Utility {
         passwordField.sendKeys(password);
         loginBtn.click();
 
+    }
+    /* Get text methods */
+
+    public String getSelectText(WebElement element, String text){
+        Select select = new Select(element);
+
+        for (int i = 0; i < select.getOptions().size() ; i++) {
+
+            if(select.getOptions().get(i).getText().equals(text)){
+                select.getOptions().get(i).click();
+
+                return select.getOptions().get(i).getText();
+            }
+        }
+
+        return "No matching value";
     }
 
     /* Assertions */

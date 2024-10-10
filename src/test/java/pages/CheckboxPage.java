@@ -32,24 +32,16 @@ public class CheckboxPage extends Utility {
     @FindBy(css = "input[type='checkbox']")
     public List<WebElement> checkboxes;
 
-    public void clickAllCheckboxes(){
+  /*  public void clickAllCheckboxes(){
         for (int i = 0; i < checkboxes.size() - 1; i++) {
             checkboxes.get(i).click();
         }
-    }
-
-  /*  public void clickCheckbox(String num){
-
-        int number = Integer.parseInt(num) - 1;
-
-            checkboxes.get(number).click();
-
-//        if (number == 1 ){
-//            checkboxes.get(0).click();
-//        } else if (number == 2) {
-//            checkboxes.get(1).click();
-//        }
     }*/
+
+  public void clickCheckbox(String num) {
+
+      checkboxOne.getAttribute("1");
+  }
 
     public void goToCheckboxPage(){
         driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL().concat("checkboxes"));

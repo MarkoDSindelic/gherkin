@@ -21,16 +21,29 @@ public class DropdownPage extends Utility {
     public WebElement dropdown;
 
     public void selectOption(String value){
-        Select obj = new Select(dropdown);
-        obj.selectByValue(value);
+        Select select = new Select(dropdown);
 
+        for (int i = 0; i < select.getOptions().size() ; i++) {
+            if(select.getOptions().get(i).getText().equals(value)){
+                select.getOptions().get(i).click();
+            }
+        }
     }
 
-    public String getSelectText(String value){
-        Select obj = new Select(dropdown);
+    /*public String getSelectText(String value){
+        Select select = new Select(dropdown);
 
-        return obj.getFirstSelectedOption().getText();
-    }
+        for (int i = 0; i < select.getOptions().size() ; i++) {
+
+            if(select.getOptions().get(i).getText().equals(value)){
+                select.getOptions().get(i).click();
+
+                return select.getOptions().get(i).getText();
+            }
+        }
+
+        return "No matching value";
+    }*/
 
     public void goToDropdownPage(){
         driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL().concat("dropdown"));

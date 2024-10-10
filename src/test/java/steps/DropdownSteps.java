@@ -27,25 +27,24 @@ public class DropdownSteps extends Utility {
     }
 
     @When("user clicks the menu and selects {string}")
-    public void user_clicks_the_menu_and_selects_value(String value){
+    public void user_clicks_the_menu_and_selects_value(String text){
 
-        dropdownPage.selectDropdownValue(dropdownPage.dropdown, value);
+        dropdownPage.selectDropdownByText(dropdownPage.dropdown,text);
+
     }
 
     @Then("Option 1 is selected {string}")
-    public void option_one_is_selected(String value){
-       String actual = dropdownPage.getSelectText(value);
+    public void option_one_is_selected(String text){
+       String actual = dropdownPage.getSelectText(dropdownPage.dropdown, text);
        String expected = "Option 1";
-
        Assert.assertEquals(actual, expected);
 
     }
 
     @Then("Option 2 is selected {string}")
-    public void option_two_is_selected(String value){
-        String actual =  dropdownPage.getSelectText(value);
+    public void option_two_is_selected(String text){
+        String actual = dropdownPage.getSelectText(dropdownPage.dropdown, text);
         String expected = "Option 2";
-
         Assert.assertEquals(actual, expected);
     }
 
