@@ -6,8 +6,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 import pages.DropdownPage;
+import utility.Utility;
 
-public class DropdownSteps {
+public class DropdownSteps extends Utility {
 
     public DropdownPage dropdownPage;
 
@@ -34,9 +35,9 @@ public class DropdownSteps {
     @Then("Option 1 is selected {string}")
     public void option_one_is_selected(String value){
 
-       String actual =  dropdownPage.getSelectText(value);
        String expected = "Option 1";
-       Assert.assertEquals(actual, expected);
+
+       dropdownPage.isEqual(dropdownPage.dropdown, expected);
 
     }
 
