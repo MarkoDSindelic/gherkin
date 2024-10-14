@@ -33,20 +33,13 @@ public class CheckboxSteps {
 
     }
 
-    @When("User clicks checkbox one {int}")
+    @When("User clicks checkbox {int}")
     public void user_clicks_checkbox_one(int num){
 
         checkboxPage.clickCheckboxByOrder(checkboxPage.checkboxes, num);
 
-
     }
 
-    @And("User clicks checkbox two {int}")
-    public void user_clicks_checkbox_two(int num){
-
-        checkboxPage.clickCheckboxByOrder(checkboxPage.checkboxes, num);
-
-    }
 
     @Then("Checkbox is checked {int}")
     public void checkbox_one_is_checked(int num){
