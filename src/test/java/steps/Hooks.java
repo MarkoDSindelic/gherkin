@@ -16,15 +16,12 @@ public class Hooks {
     @Before
     public void setUp(){
         //driver is already set up through test context
-        //System.out.println("Before hook");
 
 
     }
 
     @After
     public void tearDown(){
-
-        System.out.println("After hook");
 
         testContext.getWebCustomDriverManager().quitDriver();
     }

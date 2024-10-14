@@ -3,5 +3,5 @@ Feature: Checkboxes
     Given User is on the checkbox page
     When User clicks checkbox one "1"
     And User clicks checkbox two "2"
-    Then Checkbox 1 is checked
-    And Checkbox 2 is unchecked
+    Then Checkbox one is checked "1"
+    And Checkbox two is unchecked "2"
