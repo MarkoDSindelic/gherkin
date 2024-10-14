@@ -33,31 +33,31 @@ public class CheckboxSteps {
 
     }
 
-    @When("User clicks checkbox one {string}")
-    public void user_clicks_checkbox_one(String num){
+    @When("User clicks checkbox one {int}")
+    public void user_clicks_checkbox_one(int num){
 
         checkboxPage.clickCheckboxByOrder(checkboxPage.checkboxes, num);
 
 
     }
 
-    @And("User clicks checkbox two {string}")
-    public void user_clicks_checkbox_two(String num){
+    @And("User clicks checkbox two {int}")
+    public void user_clicks_checkbox_two(int num){
 
         checkboxPage.clickCheckboxByOrder(checkboxPage.checkboxes, num);
 
     }
 
-    @Then("Checkbox one is checked {string}")
-    public void checkbox_one_is_checked(String num){
+    @Then("Checkbox is checked {int}")
+    public void checkbox_one_is_checked(int num){
 
-        checkboxPage.isSelected(checkboxPage.checkboxes.get(Integer.parseInt(num )-1));
+        checkboxPage.isSelected(checkboxPage.checkboxes.get(num-1));
     }
 
-    @And("Checkbox two is unchecked {string}")
-    public void checkbox_two_is_unchecked(String num){
+    @And("Checkbox is unchecked {int}")
+    public void checkbox_two_is_unchecked(int num){
 
-        checkboxPage.isNotSelected(checkboxPage.checkboxes.get(Integer.parseInt(num) -1));
+        checkboxPage.isNotSelected(checkboxPage.checkboxes.get(num -1));
     }
 
 }

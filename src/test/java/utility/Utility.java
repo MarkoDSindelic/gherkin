@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 public class Utility {
@@ -41,15 +42,15 @@ public class Utility {
 
     /* Selects a checkbox by accepting the number of the checkbox as they are shown on the page
     * eg: 1 for the first one, 2 for the one below it, etc.  */
-    public void clickCheckboxByOrder(List<WebElement> checkboxList, String num) {
+    public void clickCheckboxByOrder(List<WebElement> checkboxList, int num) {
 
-        int checkboxNumber = Integer.parseInt(num) - 1;
+        int checkboxNumber = num - 1;
 
         checkboxList.get(checkboxNumber).click();
 
     }
 
-    /* Login function */
+    /* Login function *//*
     public void login(WebElement usernameField,
                       WebElement passwordField,
                       WebElement loginBtn,
@@ -61,7 +62,7 @@ public class Utility {
         passwordField.sendKeys(password);
         loginBtn.click();
 
-    }
+    }*/
 
     /* Get text methods */
 
@@ -101,5 +102,6 @@ public class Utility {
     public void isNotSelected(WebElement webElement){
         Assert.assertFalse(webElement.isSelected());
     }
+
 
 }
