@@ -1,10 +1,11 @@
 Feature: Dropdown select
   Scenario: User can select options from dropdown menu
     Given user is on the dropdown page
-    When user clicks the menu and selects "Option 1"
-    Then Option 1 is selected "Option 1"
-
-  Scenario:
-    Given user is on the dropdown page
-    When user clicks the menu and selects "Option 2"
-    Then Option 2 is selected "Option 2"
+    When user clicks the menu and selects
+      | field    | options  |
+      | dropdown | Option 1 |
+      | dropdown | Option 2 |
+    Then Correct option is selected
+      | field    | options  |
+      | dropdown | Option 1 |
+      | dropdown | Option 2 |

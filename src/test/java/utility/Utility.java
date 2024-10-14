@@ -1,10 +1,13 @@
 package utility;
 
 
+import managers.PageObjectManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.List;
 
 public class Utility {
@@ -41,29 +44,14 @@ public class Utility {
 
     /* Selects a checkbox by accepting the number of the checkbox as they are shown on the page
     * eg: 1 for the first one, 2 for the one below it, etc.  */
-    public void clickCheckboxByOrder(List<WebElement> checkboxList, String num) {
+    public void clickCheckboxByOrder(List<WebElement> checkboxList, int num) {
 
-        int checkboxNumber = Integer.parseInt(num) - 1;
+        int checkboxNumber = num - 1;
 
         checkboxList.get(checkboxNumber).click();
 
     }
 
-    /* Login function */
-    public void login(WebElement usernameField,
-                      WebElement passwordField,
-                      WebElement loginBtn,
-                      String username,
-                      String password) {
-        usernameField.clear();
-        passwordField.clear();
-        usernameField.sendKeys(username);
-        passwordField.sendKeys(password);
-        loginBtn.click();
-
-    }
-
-    /* Get text methods */
 
     /* Returns a text string from the specific dropdown field */
     public String getSelectText(WebElement element, String text){
@@ -100,6 +88,29 @@ public class Utility {
     /* Checks if checkbox is not selected */
     public void isNotSelected(WebElement webElement){
         Assert.assertFalse(webElement.isSelected());
+    }
+
+
+    public WebElement getWebElementByName(Object object, String fieldName){
+
+        WebElement webElement = null;
+
+        Field[] fields = object.getClass().getDeclaredFields();
+
+        for(Field field : fields){
+            if(field.getType() == WebElement.class){
+                field.setAccessible(true);
+                if(field.getName().equals(fieldName)){
+                    try{
+                        webElement = (WebElement) field.get(object);
+                    } catch (IllegalAccessException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        return webElement;
     }
 
 }

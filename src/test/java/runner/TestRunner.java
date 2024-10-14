@@ -17,7 +17,8 @@ import java.io.File;
                 "html:target/cucumber-html-report",
                 "junit: target/cucumber.xml",
                 "pretty"},
-        monochrome = true //makes console output more readable 
+        monochrome = true, //makes console output more readable
+        dryRun = true //checks the mapping between feature file and steps file
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 

@@ -1,6 +1,7 @@
 package steps;
 
 import cucumber.TestContext;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,6 +9,10 @@ import io.cucumber.java.en.When;
 import pages.LoginPage;
 import pages.SecurePage;
 import utility.Utility;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class LoginSteps {
 
@@ -21,7 +26,6 @@ public class LoginSteps {
         testContext = context;
         loginPage = testContext.getPageObjectManager().getLoginPage();
         securePage = testContext.getPageObjectManager().getSecurePage();
-        //utility = testContext.getUtility();
     }
 
 
@@ -30,26 +34,12 @@ public class LoginSteps {
 
         loginPage.goToLoginPage();
 
-        //driver.navigate().to("https://the-internet.herokuapp.com/login");
-        //utility.goToPage(loginPage);
-
-
-        /* Just some tests */
-        /*System.out.println("***************");
-        utility.goToPage(loginPage);
-        System.out.println("***************");
-        utility.goToPage(securePage);
-        System.out.println("***************");
-        utility.goToPage(testContext);
-        System.out.println("***************");*/
-
     }
 
     @When("User enters username {string}")
     public void user_enters_username(String username){
 
         loginPage.enterData(loginPage.usernameField, username);
-
     }
 
     @And("User enters password {string}")
@@ -61,7 +51,6 @@ public class LoginSteps {
     public void user_clicks_login_button(){
 
         loginPage.clickAction(loginPage.loginButton);
-
     }
     @Then("User is logged in") //Move to a new class?
     public void user_is_logged_in(){
@@ -76,5 +65,21 @@ public class LoginSteps {
 
         loginPage.isElementDisplayed(loginPage.loginButton);
     }
+
+    @When("User tries to login with invalid credentials")
+    public void userTriesToLoginWithInvalidCredentials(DataTable table ) {
+
+        List<Map<String, String>> credentials = table.asMaps(String.class, String.class);
+
+        for(Map<String, String> invalidCredentials : credentials){
+
+            String username = invalidCredentials.get("username");
+            String password = invalidCredentials.get("password");
+            loginPage.login(username, password);
+
+        }
+
+    }
+
 
 }
