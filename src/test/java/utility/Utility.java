@@ -1,11 +1,13 @@
 package utility;
 
 
+import managers.PageObjectManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.List;
 
 public class Utility {
@@ -50,21 +52,6 @@ public class Utility {
 
     }
 
-    /* Login function *//*
-    public void login(WebElement usernameField,
-                      WebElement passwordField,
-                      WebElement loginBtn,
-                      String username,
-                      String password) {
-        usernameField.clear();
-        passwordField.clear();
-        usernameField.sendKeys(username);
-        passwordField.sendKeys(password);
-        loginBtn.click();
-
-    }*/
-
-    /* Get text methods */
 
     /* Returns a text string from the specific dropdown field */
     public String getSelectText(WebElement element, String text){
@@ -103,5 +90,27 @@ public class Utility {
         Assert.assertFalse(webElement.isSelected());
     }
 
+
+    public WebElement getWebElementByName(Object object, String fieldName){
+
+        WebElement webElement = null;
+
+        Field[] fields = object.getClass().getDeclaredFields();
+
+        for(Field field : fields){
+            if(field.getType() == WebElement.class){
+                field.setAccessible(true);
+                if(field.getName().equals(fieldName)){
+                    try{
+                        webElement = (WebElement) field.get(object);
+                    } catch (IllegalAccessException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        return webElement;
+    }
 
 }

@@ -37,15 +37,25 @@ public class DropdownSteps extends Utility {
 
         List<Map<String, String>> dropdownMenu = table.asMaps(String.class, String.class);
 
+//        WebElement el = dropdownPage.getWebElementByName(dropdownPage, "dropdown");
+//        dropdownPage.selectDropdownByText(el, "Option 2");
+
         for(Map<String, String> input : dropdownMenu ){
 
             String elementName = input.get("field");
-            Field checkboxField = dropdownPage.getClass().getDeclaredField(elementName);
             String option = input.get("options");
 
-            if(checkboxField.getName().equals(elementName)){
-                dropdownPage.selectDropdownByText(dropdownPage.dropdown, option);
-            }
+            WebElement el = dropdownPage.getWebElementByName(dropdownPage, elementName);
+            dropdownPage.selectDropdownByText(el, option);
+
+//            if(checkboxField.getName().equals(elementName)){
+//                dropdownPage.selectDropdownByText(dropdownPage.dropdown, option);
+//            }
+//            else {
+//                System.out.println("unknown object");
+//            }
+
+
         }
 
     }
