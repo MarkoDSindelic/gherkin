@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utility.Utility;
+import utility.BaseClass;
 
-public class DropdownPage extends Utility {
+public class DropdownPage extends BaseClass {
 
     WebDriver driver;
 

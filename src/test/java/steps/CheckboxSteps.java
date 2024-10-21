@@ -1,15 +1,13 @@
 package steps;
 
 import cucumber.TestContext;
-import dataProvider.ConfigFileReader;
-import io.cucumber.java.en.And;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import jdk.jshell.execution.Util;
-import org.testng.Assert;
 import pages.CheckboxPage;
-import utility.Utility;
+
+import java.util.List;
 
 
 public class CheckboxSteps {
@@ -33,24 +31,45 @@ public class CheckboxSteps {
 
     }
 
-    @When("User clicks checkbox {int}")
-    public void user_clicks_checkbox_one(int num){
+    @When("User clicks checkbox")
+    public void user_clicks_checkbox_one(DataTable table){
 
-        checkboxPage.clickCheckboxByOrder(checkboxPage.checkboxes, num);
+        List<List<Integer>> values = table.asLists(Integer.class);
+
+        for (int i = 0; i < values.size() ; i++) {
+
+            for (int j = 0; j < values.get(i).size() ; j++) {
+
+                checkboxPage.clickCheckboxByOrder(values.get(i).get(j));
+            }
+        }
 
     }
 
+    @Then("Checkbox is checked")
+    public void checkbox_is_checked(DataTable table){
 
-    @Then("Checkbox is checked {int}")
-    public void checkbox_one_is_checked(int num){
+        List<List<Integer>> values = table.asLists(Integer.class);
+        for (int i = 0; i < values.size() ; i++) {
 
-        checkboxPage.isSelected(checkboxPage.checkboxes.get(num-1));
+            for (int j = 0; j < values.get(i).size() ; j++) {
+                int num = values.get(i).get(j);
+                checkboxPage.isSelected(checkboxPage.checkboxes.get(num-1));
+            }
+        }
+
     }
 
-    @And("Checkbox is unchecked {int}")
-    public void checkbox_two_is_unchecked(int num){
+    @Then("Checkbox is unchecked")
+    public void checkbox_is_unchecked(DataTable table){
 
-        checkboxPage.isNotSelected(checkboxPage.checkboxes.get(num -1));
+        List<List<Integer>> values = table.asLists(Integer.class);
+        for (int i = 0; i < values.size() ; i++) {
+            for (int j = 0; j < values.get(i).size() ; j++) {
+                int num = values.get(i).get(j);
+                checkboxPage.isNotSelected(checkboxPage.checkboxes.get(num-1));
+            }
+        }
     }
 
 }

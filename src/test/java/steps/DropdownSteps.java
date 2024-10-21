@@ -8,14 +8,13 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages.DropdownPage;
-import utility.Utility;
+import utility.BaseClass;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
 
-public class DropdownSteps extends Utility {
+public class DropdownSteps extends BaseClass {
 
     public DropdownPage dropdownPage;
     public TestContext testContext;
@@ -37,13 +36,13 @@ public class DropdownSteps extends Utility {
 
         List<Map<String, String>> dropdownMenu = table.asMaps(String.class, String.class);
 
-
         for(Map<String, String> input : dropdownMenu ){
 
             String elementName = input.get("field");
             String option = input.get("options");
 
             WebElement el = dropdownPage.getWebElementByName(dropdownPage, elementName);
+
             dropdownPage.selectDropdownByText(el, option);
 
         }
@@ -64,6 +63,5 @@ public class DropdownSteps extends Utility {
         }
 
     }
-
 
 }
