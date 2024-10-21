@@ -31,8 +31,8 @@ public class LoginSteps {
 
     }
 
-    @When("User enters valid credentials")
-    public void user_enters_username(DataTable table){
+    @When("User logs in with valid credentials")
+    public void user_logs_in_with_valid_credentials(DataTable table){
 
         List<Map<String, String>> credentials = table.asMaps(String.class, String.class);
 

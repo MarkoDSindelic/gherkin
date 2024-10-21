@@ -1,7 +1,7 @@
 Feature: Login
   Scenario: User can login with valid credentials
     Given User is on the login page
-    When User enters valid credentials
+    When User logs in with valid credentials
       | username      | password              |
       | tomsmith      |  SuperSecretPassword! |
     Then User is logged in
