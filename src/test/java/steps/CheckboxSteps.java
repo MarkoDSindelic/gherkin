@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.CheckboxPage;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 
@@ -14,10 +15,7 @@ public class CheckboxSteps {
 
 
     public CheckboxPage checkboxPage;
-
     public TestContext testContext;
-
-
 
     public CheckboxSteps(TestContext context){
         testContext = context;
@@ -32,7 +30,7 @@ public class CheckboxSteps {
     }
 
     @When("User clicks checkbox")
-    public void user_clicks_checkbox_one(DataTable table){
+    public void user_clicks_checkbox(DataTable table) {
 
         List<List<Integer>> values = table.asLists(Integer.class);
 
@@ -41,13 +39,13 @@ public class CheckboxSteps {
             for (int j = 0; j < values.get(i).size() ; j++) {
 
                 checkboxPage.clickCheckboxByOrder(values.get(i).get(j));
+
             }
         }
-
     }
 
     @Then("Checkbox is checked")
-    public void checkbox_is_checked(DataTable table){
+    public void checkbox_is_checked(DataTable table)  {
 
         List<List<Integer>> values = table.asLists(Integer.class);
         for (int i = 0; i < values.size() ; i++) {

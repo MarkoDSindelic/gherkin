@@ -4,9 +4,10 @@ package utility;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-
 import java.lang.reflect.Field;
-import java.util.List;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 
 public class BaseClass {
 
@@ -39,7 +40,6 @@ public class BaseClass {
             }
         }
     }
-
 
 
     /* Returns a text string from the specific dropdown field */
@@ -80,7 +80,8 @@ public class BaseClass {
     }
 
 
-    public WebElement getWebElementByName(Object object, String fieldName){
+    /* Not good */
+   /* public WebElement getWebElementByName(Object object, String fieldName){
 
         WebElement webElement = null;
 
@@ -100,6 +101,77 @@ public class BaseClass {
         }
 
         return webElement;
+    }*/
+
+    public void clickDropdownOptionByText(String fieldName, String value) throws IllegalAccessException, InvocationTargetException {
+
+        WebElement webElement;
+
+        Field[] fields = this.getClass().getDeclaredFields();
+        Method[] methods = this.getClass().getDeclaredMethods();
+
+        for(Field field : fields){
+            if(field.getType() == WebElement.class){
+                if(field.getName().equals(fieldName)){
+                    webElement = (WebElement) field.get(this);
+
+                    for(Method method : methods){
+                        if(method.getName().equals("selectDropdownByText")) {
+                            method.invoke(webElement, value);
+                        }
+                    }
+                }
+
+            }
+        }
     }
+
+    //some experiment
+   /* public void test(String fieldName, String value) throws IllegalAccessException, InvocationTargetException {
+
+        WebElement webElement;
+
+        Field[] fields = this.getClass().getDeclaredFields();
+        Method[] methods = this.getClass().getDeclaredMethods();
+
+
+
+        for(Field f : fields){
+            for(Method method : methods){
+
+
+                if(f.getType() == WebElement.class){
+                    webElement = (WebElement) f.get(this);
+
+                    switch(fieldName){
+                        case "dropdown" :
+                            //this.selectDropdownByText(webElement, value);
+                            if(method.getName().equals("selectDropdownByText")){
+                                method.invoke(webElement, value);
+                            }
+                            break;
+
+                        case "checkboxOne":
+                            this.clickAction(webElement);
+                            System.out.println("Checkbox one");
+                            break;
+
+                        case "checkboxTwo":
+                            this.clickAction(webElement);
+                            System.out.println("Checkbox two");
+                            break;
+
+                        default:
+                            System.out.println("No such element");
+                    }
+
+            }
+
+
+            }
+
+        }
+
+    }*/
 
 }

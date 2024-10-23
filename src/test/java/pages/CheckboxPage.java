@@ -22,10 +22,10 @@ public class CheckboxPage extends BaseClass {
     }
 
     @FindBy(xpath = "//*[@id=\"checkboxes\"]/input[1]")
-    private WebElement checkboxOne;
+    public WebElement checkboxOne;
 
     @FindBy(xpath = "//*[@id=\"checkboxes\"]/input[2]")
-    private WebElement checkboxTwo;
+    public WebElement checkboxTwo;
 
     @FindBy(css = "input[type='checkbox']")
     public List<WebElement> checkboxes;

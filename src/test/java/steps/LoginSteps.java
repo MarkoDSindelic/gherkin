@@ -32,7 +32,7 @@ public class LoginSteps {
     }
 
     @When("User logs in with valid credentials")
-    public void user_logs_in_with_valid_credentials(DataTable table){
+    public void user_logs_in_with_valid_credentials(DataTable table) {
 
         List<Map<String, String>> credentials = table.asMaps(String.class, String.class);
 
@@ -42,7 +42,9 @@ public class LoginSteps {
             String password = validCredentials.get("password");
 
             loginPage.login(username, password);
+
         }
+
     }
 
     @Then("User is logged in")
