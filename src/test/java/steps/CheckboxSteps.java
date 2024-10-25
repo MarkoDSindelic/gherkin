@@ -9,6 +9,7 @@ import pages.CheckboxPage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Map;
 
 
 public class CheckboxSteps {
@@ -29,31 +30,31 @@ public class CheckboxSteps {
 
     }
 
+    /* TO DO */
     @When("User clicks checkbox")
     public void user_clicks_checkbox(DataTable table) {
 
-        List<List<Integer>> values = table.asLists(Integer.class);
+        List<Map<String, Integer>> values = table.asMaps(String.class, Integer.class);
 
-        for (int i = 0; i < values.size() ; i++) {
+        for(Map<String, Integer> input : values){
 
-            for (int j = 0; j < values.get(i).size() ; j++) {
+          int num = input.get("checkbox");
 
-                checkboxPage.clickCheckboxByOrder(values.get(i).get(j));
-
-            }
+           checkboxPage.clickCheckboxByOrder(num);
         }
+
     }
 
     @Then("Checkbox is checked")
     public void checkbox_is_checked(DataTable table)  {
 
-        List<List<Integer>> values = table.asLists(Integer.class);
-        for (int i = 0; i < values.size() ; i++) {
+        List<Map<String, Integer>> values = table.asMaps(String.class, Integer.class);
 
-            for (int j = 0; j < values.get(i).size() ; j++) {
-                int num = values.get(i).get(j);
-                checkboxPage.isSelected(checkboxPage.checkboxes.get(num-1));
-            }
+        for(Map<String, Integer> input : values){
+
+            int num = input.get("checkbox");
+
+            checkboxPage.isSelected(checkboxPage.checkboxes.get(num -1));
         }
 
     }
@@ -61,13 +62,15 @@ public class CheckboxSteps {
     @Then("Checkbox is unchecked")
     public void checkbox_is_unchecked(DataTable table){
 
-        List<List<Integer>> values = table.asLists(Integer.class);
-        for (int i = 0; i < values.size() ; i++) {
-            for (int j = 0; j < values.get(i).size() ; j++) {
-                int num = values.get(i).get(j);
-                checkboxPage.isNotSelected(checkboxPage.checkboxes.get(num-1));
-            }
+        List<Map<String, Integer>> values = table.asMaps(String.class, Integer.class);
+
+        for(Map<String, Integer> input : values){
+
+            int num = input.get("checkbox");
+
+            checkboxPage.isNotSelected(checkboxPage.checkboxes.get(num -1));
         }
+
     }
 
 }
