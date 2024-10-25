@@ -1,14 +1,20 @@
 package steps;
 
 import cucumber.TestContext;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 import pages.DropdownPage;
-import utility.Utility;
+import utility.BaseClass;
 
-public class DropdownSteps extends Utility {
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Map;
+
+
+public class DropdownSteps extends BaseClass {
 
     public DropdownPage dropdownPage;
     public TestContext testContext;
@@ -23,28 +29,36 @@ public class DropdownSteps extends Utility {
     @Given("user is on the dropdown page")
     public void user_is_on_the_dropdown_page(){
         dropdownPage.goToDropdownPage();
-    }
-
-    @When("user clicks the menu and selects {string}")
-    public void user_clicks_the_menu_and_selects_value(String text){
-
-        dropdownPage.selectDropdownByText(dropdownPage.dropdown,text);
 
     }
 
-    @Then("Option 1 is selected {string}")
-    public void option_one_is_selected(String text){
-       String actual = dropdownPage.getSelectText(dropdownPage.dropdown, text);
-       String expected = "Option 1";
-       Assert.assertEquals(actual, expected);
+    @When("user clicks the menu and selects")
+    public void user_clicks_the_menu_and_selects_value(DataTable table) throws IllegalAccessException, InvocationTargetException {
 
+        List<Map<String, String>> dropdownMenu = table.asMaps(String.class, String.class);
+
+        for(Map<String, String> input : dropdownMenu ){
+
+            String elementName = input.get("field");
+            String option = input.get("options");
+
+            dropdownPage.clickDropdownOptionByText(elementName, option);
+        }
     }
 
-    @Then("Option 2 is selected {string}")
-    public void option_two_is_selected(String text){
-        String actual = dropdownPage.getSelectText(dropdownPage.dropdown, text);
-        String expected = "Option 2";
-        Assert.assertEquals(actual, expected);
+    @Then("Correct option is selected")
+    public void option_one_is_selected(DataTable table){
+
+        List<Map<String, String>> dropdownMenu = table.asMaps(String.class, String.class);
+
+        for(Map<String, String> input : dropdownMenu ){
+
+            String expected = input.get("options");
+            String actual = dropdownPage.getSelectText(dropdownPage.dropdown, expected );
+            Assert.assertEquals(actual, expected);
+
+        }
+
     }
 
 }

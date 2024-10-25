@@ -1,13 +1,14 @@
 package steps;
 
 import cucumber.TestContext;
-import io.cucumber.java.en.And;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.LoginPage;
 import pages.SecurePage;
-import utility.Utility;
+import java.util.List;
+import java.util.Map;
 
 public class LoginSteps {
 
@@ -15,13 +16,11 @@ public class LoginSteps {
     TestContext testContext;
     LoginPage loginPage;
     SecurePage securePage;
-    Utility utility;
 
     public LoginSteps(TestContext context){
         testContext = context;
         loginPage = testContext.getPageObjectManager().getLoginPage();
         securePage = testContext.getPageObjectManager().getSecurePage();
-        //utility = testContext.getUtility();
     }
 
 
@@ -30,40 +29,25 @@ public class LoginSteps {
 
         loginPage.goToLoginPage();
 
-        //driver.navigate().to("https://the-internet.herokuapp.com/login");
-        //utility.goToPage(loginPage);
+    }
 
+    @When("User logs in with valid credentials")
+    public void user_logs_in_with_valid_credentials(DataTable table) {
 
-        /* Just some tests */
-        /*System.out.println("***************");
-        utility.goToPage(loginPage);
-        System.out.println("***************");
-        utility.goToPage(securePage);
-        System.out.println("***************");
-        utility.goToPage(testContext);
-        System.out.println("***************");*/
+        List<Map<String, String>> credentials = table.asMaps(String.class, String.class);
+
+        for(Map<String, String> validCredentials : credentials ) {
+
+            String username = validCredentials.get("username");
+            String password = validCredentials.get("password");
+
+            loginPage.login(username, password);
+
+        }
 
     }
 
-    @When("User enters username {string}")
-    public void user_enters_username(String username){
-
-        loginPage.enterData(loginPage.usernameField, username);
-
-    }
-
-    @And("User enters password {string}")
-    public void user_enters_password(String password){
-
-        loginPage.enterData(loginPage.passwordField, password);
-    }
-    @And("User clicks login button")
-    public void user_clicks_login_button(){
-
-        loginPage.clickAction(loginPage.loginButton);
-
-    }
-    @Then("User is logged in") //Move to a new class?
+    @Then("User is logged in")
     public void user_is_logged_in(){
 
         String expected = "You logged into a secure area!\n" + "×";
@@ -73,8 +57,20 @@ public class LoginSteps {
     }
     @Then("User is not logged in")
     public void user_is_not_logged_in(){
-
         loginPage.isElementDisplayed(loginPage.loginButton);
+    }
+
+    @When("User tries to login with invalid credentials")
+    public void userTriesToLoginWithInvalidCredentials(DataTable table ) {
+
+        List<Map<String, String>> credentials = table.asMaps(String.class, String.class);
+
+        for(Map<String, String> invalidCredentials : credentials){
+
+            String username = invalidCredentials.get("username");
+            String password = invalidCredentials.get("password");
+            loginPage.login(username, password);
+        }
     }
 
 }

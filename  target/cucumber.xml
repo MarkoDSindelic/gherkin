@@ -1,43 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="21.484" tests="5" skipped="0" failures="0" errors="0">
-<testcase classname="Checkboxes" name="User can click on checkboxes" time="5.102">
+<testsuite name="Cucumber" time="0.288" tests="4" skipped="0" failures="0" errors="0">
+<testcase classname="Checkboxes" name="User can click on checkboxes" time="0.01">
 <system-out><![CDATA[
 Given User is on the checkbox page..........................................passed
-When User clicks checkbox one "1"...........................................passed
-And User clicks checkbox two "2"............................................passed
-Then Checkbox one is checked "1"............................................passed
-And Checkbox two is unchecked "2"...........................................passed
+When User clicks checkbox...................................................passed
+Then Checkbox is checked....................................................passed
+Then Checkbox is unchecked..................................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Dropdown select" name="User can select options from dropdown menu" time="3.741">
+<testcase classname="Dropdown select" name="User can select options from dropdown menu" time="0.002">
 <system-out><![CDATA[
 Given user is on the dropdown page..........................................passed
-When user clicks the menu and selects "Option 1"............................passed
-Then Option 1 is selected "Option 1"........................................passed
+When user clicks the menu and selects.......................................passed
+Then Correct option is selected.............................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Dropdown select" name="" time="3.756">
-<system-out><![CDATA[
-Given user is on the dropdown page..........................................passed
-When user clicks the menu and selects "Option 2"............................passed
-Then Option 2 is selected "Option 2"........................................passed
-]]></system-out>
-</testcase>
-<testcase classname="Login" name="User can login with valid credentials" time="4.439">
+<testcase classname="Login" name="User can login with valid credentials" time="0.001">
 <system-out><![CDATA[
 Given User is on the login page.............................................passed
-When User enters username "tomsmith"........................................passed
-And User enters password "SuperSecretPassword!".............................passed
-And User clicks login button................................................passed
+When User logs in with valid credentials....................................passed
 Then User is logged in......................................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Login" name="User cannot login with invalid credentials" time="4.174">
+<testcase classname="Login" name="User cannot login with invalid credentials" time="0.003">
 <system-out><![CDATA[
 Given User is on the login page.............................................passed
-When User enters username "some username"...................................passed
-And User enters password "some wrong password"..............................passed
-And User clicks login button................................................passed
+When User tries to login with invalid credentials...........................passed
 Then User is not logged in..................................................passed
 ]]></system-out>
 </testcase>

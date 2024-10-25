@@ -1,25 +1,22 @@
 package steps;
 
 import cucumber.TestContext;
-import dataProvider.ConfigFileReader;
-import io.cucumber.java.en.And;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import jdk.jshell.execution.Util;
-import org.testng.Assert;
 import pages.CheckboxPage;
-import utility.Utility;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Map;
 
 
 public class CheckboxSteps {
 
 
     public CheckboxPage checkboxPage;
-
     public TestContext testContext;
-
-
 
     public CheckboxSteps(TestContext context){
         testContext = context;
@@ -33,31 +30,47 @@ public class CheckboxSteps {
 
     }
 
-    @When("User clicks checkbox one {string}")
-    public void user_clicks_checkbox_one(String num){
+    /* TO DO */
+    @When("User clicks checkbox")
+    public void user_clicks_checkbox(DataTable table) {
 
-        checkboxPage.clickCheckboxByOrder(checkboxPage.checkboxes, num);
+        List<Map<String, Integer>> values = table.asMaps(String.class, Integer.class);
 
+        for(Map<String, Integer> input : values){
+
+          int num = input.get("checkbox");
+
+           checkboxPage.clickCheckboxByOrder(num);
+        }
 
     }
 
-    @And("User clicks checkbox two {string}")
-    public void user_clicks_checkbox_two(String num){
+    @Then("Checkbox is checked")
+    public void checkbox_is_checked(DataTable table)  {
 
-        checkboxPage.clickCheckboxByOrder(checkboxPage.checkboxes, num);
+        List<Map<String, Integer>> values = table.asMaps(String.class, Integer.class);
+
+        for(Map<String, Integer> input : values){
+
+            int num = input.get("checkbox");
+
+            checkboxPage.isSelected(checkboxPage.checkboxes.get(num -1));
+        }
 
     }
 
-    @Then("Checkbox one is checked {string}")
-    public void checkbox_one_is_checked(String num){
+    @Then("Checkbox is unchecked")
+    public void checkbox_is_unchecked(DataTable table){
 
-        checkboxPage.isSelected(checkboxPage.checkboxes.get(Integer.parseInt(num )-1));
-    }
+        List<Map<String, Integer>> values = table.asMaps(String.class, Integer.class);
 
-    @And("Checkbox two is unchecked {string}")
-    public void checkbox_two_is_unchecked(String num){
+        for(Map<String, Integer> input : values){
 
-        checkboxPage.isNotSelected(checkboxPage.checkboxes.get(Integer.parseInt(num) -1));
+            int num = input.get("checkbox");
+
+            checkboxPage.isNotSelected(checkboxPage.checkboxes.get(num -1));
+        }
+
     }
 
 }

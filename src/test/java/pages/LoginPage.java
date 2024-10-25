@@ -5,12 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utility.Utility;
-
-import java.io.FileReader;
+import utility.BaseClass;
 
 
-public class LoginPage extends Utility {
+public class LoginPage extends BaseClass {
 
     WebDriver driver;
 
@@ -32,23 +30,14 @@ public class LoginPage extends Utility {
     public WebElement loginMsg;
 
 
-    /*public void inputUsername(String username){
-        usernameField.clear();
-        usernameField.sendKeys(username);
-    }
+    /* Login */
+    public void login(String username, String password){
 
-    public void inputPassword(String password){
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
+        super.enterData(usernameField, username);
+        super.enterData(passwordField, password);
+        super.clickAction(loginButton);
 
-    public void clickLoginButton(){
-        loginButton.click();
     }
-
-    public String getLogoutTxt(){
-        return logoutMsg.getText();
-    }*/
 
     public void goToLoginPage(){
 

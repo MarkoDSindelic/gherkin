@@ -6,21 +6,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utility.Utility;
+import utility.BaseClass;
 
 import java.util.List;
 
 
-public class CheckboxPage extends Utility {
+public class CheckboxPage extends BaseClass {
     WebDriver driver;
     ConfigFileReader configFileReader;
 
     public CheckboxPage(WebDriver driver){
         PageFactory.initElements(driver, this);
         configFileReader = new ConfigFileReader();
-
         this.driver = driver;
-
     }
 
     @FindBy(xpath = "//*[@id=\"checkboxes\"]/input[1]")
@@ -32,20 +30,21 @@ public class CheckboxPage extends Utility {
     @FindBy(css = "input[type='checkbox']")
     public List<WebElement> checkboxes;
 
-  /*  public void clickAllCheckboxes(){
-        for (int i = 0; i < checkboxes.size() - 1; i++) {
-            checkboxes.get(i).click();
-        }
-    }*/
+    /* Selects a checkbox by accepting the number of the checkbox as they are shown on the page
+     * eg: 1 for the first one, 2 for the one below it, etc.  */
+    public void clickCheckboxByOrder(int num) {
 
-  public void clickCheckbox(String num) {
+        int checkboxNumber = num - 1;
 
-      checkboxOne.getAttribute("1");
-  }
+        checkboxes.get(checkboxNumber).click();
+
+    }
+
 
     public void goToCheckboxPage(){
         driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL().concat("checkboxes"));
-        //driver.navigate().to(configFileReader.getApplicationURL().concat("checkboxes"));
     }
+
+
 
 }
