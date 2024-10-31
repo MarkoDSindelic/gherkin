@@ -7,6 +7,7 @@ import org.testng.Assert;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 
 public class BaseClass {
@@ -64,6 +65,11 @@ public class BaseClass {
     public void isElementDisplayed(WebElement webElement){
          Assert.assertTrue(webElement.isDisplayed());
     }
+
+    public void isElementNotDisplayed(WebElement webElement){
+        Assert.assertFalse(webElement.isDisplayed());
+    }
+
     /* Checks if two strings are equal */
     public void isEqual(WebElement webElement, String expected){
         String actual = webElement.getText();
@@ -78,30 +84,6 @@ public class BaseClass {
     public void isNotSelected(WebElement webElement){
         Assert.assertFalse(webElement.isSelected());
     }
-
-
-    /* Not good */
-   /* public WebElement getWebElementByName(Object object, String fieldName){
-
-        WebElement webElement = null;
-
-        Field[] fields = object.getClass().getDeclaredFields();
-
-        for(Field field : fields){
-            if(field.getType() == WebElement.class){
-                field.setAccessible(true);
-                if(field.getName().equals(fieldName)){
-                    try{
-                        webElement = (WebElement) field.get(object);
-                    } catch (IllegalAccessException e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-
-        return webElement;
-    }*/
 
     public void clickDropdownOptionByText(String fieldName, String value) throws IllegalAccessException, InvocationTargetException {
 
@@ -126,52 +108,67 @@ public class BaseClass {
         }
     }
 
-    //some experiment
-   /* public void test(String fieldName, String value) throws IllegalAccessException, InvocationTargetException {
-
-        WebElement webElement;
-
-        Field[] fields = this.getClass().getDeclaredFields();
-        Method[] methods = this.getClass().getDeclaredMethods();
 
 
+   /*Should be moved to another class */
+   public String getType(String value){
 
-        for(Field f : fields){
-            for(Method method : methods){
+        return value.replaceAll(".*_", "");
+   }
+
+   public void elementAction(String fieldName, String value) throws IllegalAccessException, InvocationTargetException {
+
+       String type = getType(fieldName);
+       Field[] fields = this.getClass().getDeclaredFields();
+
+       WebElement element;
+
+       for(Field field : fields) {
+
+           switch (type) {
+               case "button":
+                   if(field.getType() == WebElement.class && field.getName().equals(fieldName)) {
+                           element = (WebElement) field.get(this);
+                           this.clickAction(element);
+                           //System.out.println("PRESSED");
+                   }
+                   break;
+               case "field":
+                   if(field.getType() == WebElement.class && field.getName().equals(fieldName)) {
+                       element = (WebElement) field.get(this);
+                       this.enterData(element, value);
+                       //System.out.println("ENTERED");
+                   }
+                   break;
+               case "dropdown":
+                   if(field.getType() == WebElement.class && field.getName().equals(fieldName)) {
+                       element = (WebElement) field.get(this);
+                       this.selectDropdownByText(element, value);
+                       //System.out.println("SELECTED");
+                   }
+                   break;
+                   /* Not the best solution - It's assumed that you have a LIST of checkboxes */
+               case "checkbox" :
+                   if(field.getType() == List.class && field.getName().equals(fieldName)){
+                       Method[] methods = this.getClass().getDeclaredMethods();
+
+                       for(Method method : methods){
+                           if(method.getName().equals("clickCheckboxByOrder")){
+                               method.invoke(this, value);
+                               //System.out.println("CHECKED");
+                           }
+                       }
+                   }
+                   break;
+               default:
+                   System.out.println("No such type");
+           }
+
+       }
 
 
-                if(f.getType() == WebElement.class){
-                    webElement = (WebElement) f.get(this);
+   }
 
-                    switch(fieldName){
-                        case "dropdown" :
-                            //this.selectDropdownByText(webElement, value);
-                            if(method.getName().equals("selectDropdownByText")){
-                                method.invoke(webElement, value);
-                            }
-                            break;
-
-                        case "checkboxOne":
-                            this.clickAction(webElement);
-                            System.out.println("Checkbox one");
-                            break;
-
-                        case "checkboxTwo":
-                            this.clickAction(webElement);
-                            System.out.println("Checkbox two");
-                            break;
-
-                        default:
-                            System.out.println("No such element");
-                    }
-
-            }
-
-
-            }
-
-        }
-
-    }*/
 
 }
+

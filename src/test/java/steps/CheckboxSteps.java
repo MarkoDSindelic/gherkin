@@ -32,29 +32,36 @@ public class CheckboxSteps {
 
     /* TO DO */
     @When("User clicks checkbox")
-    public void user_clicks_checkbox(DataTable table) {
+    public void user_clicks_checkbox(DataTable table) throws IllegalAccessException, InvocationTargetException {
 
-        List<Map<String, Integer>> values = table.asMaps(String.class, Integer.class);
+        List<String> values = table.asList(String.class);
 
-        for(Map<String, Integer> input : values){
+        for (int i = 1; i < values.size(); i++) {
+            String name = values.get(0);
+            String num = values.get(i);
 
-          int num = input.get("checkbox");
+            checkboxPage.elementAction(name, num);
 
-           checkboxPage.clickCheckboxByOrder(num);
         }
+
+
+
+
+
 
     }
 
     @Then("Checkbox is checked")
-    public void checkbox_is_checked(DataTable table)  {
+    public void checkbox_is_checked(DataTable table) throws InvocationTargetException, IllegalAccessException {
 
-        List<Map<String, Integer>> values = table.asMaps(String.class, Integer.class);
+        List<Map<String, String>> values = table.asMaps(String.class, String.class);
 
-        for(Map<String, Integer> input : values){
+        for(Map<String, String> input : values){
 
-            int num = input.get("checkbox");
+            String num = input.get("checkbox");
 
-            checkboxPage.isSelected(checkboxPage.checkboxes.get(num -1));
+            checkboxPage.elementAction("checkbox", num);
+
         }
 
     }
@@ -68,7 +75,7 @@ public class CheckboxSteps {
 
             int num = input.get("checkbox");
 
-            checkboxPage.isNotSelected(checkboxPage.checkboxes.get(num -1));
+            checkboxPage.isNotSelected(checkboxPage.checkbox.get(num -1));
         }
 
     }

@@ -49,9 +49,7 @@ public class LoginSteps {
 
     @Then("User is logged in")
     public void user_is_logged_in(){
-
         String expected = "You logged into a secure area!\n" + "×";
-
         loginPage.isEqual(loginPage.loginMsg, expected);
         loginPage.isElementDisplayed(securePage.logOutButton);
     }
@@ -66,7 +64,6 @@ public class LoginSteps {
         List<Map<String, String>> credentials = table.asMaps(String.class, String.class);
 
         for(Map<String, String> invalidCredentials : credentials){
-
             String username = invalidCredentials.get("username");
             String password = invalidCredentials.get("password");
             loginPage.login(username, password);

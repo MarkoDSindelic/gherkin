@@ -42,7 +42,8 @@ public class DropdownSteps extends BaseClass {
             String elementName = input.get("field");
             String option = input.get("options");
 
-            dropdownPage.clickDropdownOptionByText(elementName, option);
+            dropdownPage.elementAction(elementName, option);
+
         }
     }
 
@@ -54,7 +55,7 @@ public class DropdownSteps extends BaseClass {
         for(Map<String, String> input : dropdownMenu ){
 
             String expected = input.get("options");
-            String actual = dropdownPage.getSelectText(dropdownPage.dropdown, expected );
+            String actual = dropdownPage.getSelectText(dropdownPage.menu_dropdown, expected );
             Assert.assertEquals(actual, expected);
 
         }

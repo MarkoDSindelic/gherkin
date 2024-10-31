@@ -17,7 +17,7 @@ public class DropdownPage extends BaseClass {
     }
 
     @FindBy(id = "dropdown")
-    public WebElement dropdown;
+    public WebElement menu_dropdown;
 
 
     public void goToDropdownPage(){

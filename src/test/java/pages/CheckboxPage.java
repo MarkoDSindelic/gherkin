@@ -13,30 +13,29 @@ import java.util.List;
 
 public class CheckboxPage extends BaseClass {
     WebDriver driver;
-    ConfigFileReader configFileReader;
 
     public CheckboxPage(WebDriver driver){
         PageFactory.initElements(driver, this);
-        configFileReader = new ConfigFileReader();
         this.driver = driver;
     }
 
-    @FindBy(xpath = "//*[@id=\"checkboxes\"]/input[1]")
+   /* @FindBy(xpath = "//*[@id=\"checkboxes\"]/input[1]")
     public WebElement checkboxOne;
 
     @FindBy(xpath = "//*[@id=\"checkboxes\"]/input[2]")
-    public WebElement checkboxTwo;
+    public WebElement checkboxTwo;*/
 
     @FindBy(css = "input[type='checkbox']")
-    public List<WebElement> checkboxes;
+    public List<WebElement> checkbox;
 
     /* Selects a checkbox by accepting the number of the checkbox as they are shown on the page
      * eg: 1 for the first one, 2 for the one below it, etc.  */
-    public void clickCheckboxByOrder(int num) {
+    public void clickCheckboxByOrder(String num) {
 
-        int checkboxNumber = num - 1;
 
-        checkboxes.get(checkboxNumber).click();
+        int checkboxNumber = Integer.parseInt(num) - 1;
+
+        checkbox.get(checkboxNumber).click();
 
     }
 
