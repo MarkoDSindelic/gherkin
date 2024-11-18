@@ -33,16 +33,16 @@ public class DropdownSteps extends BaseClass {
     }
 
     @When("user clicks the menu and selects")
-    public void user_clicks_the_menu_and_selects_value(DataTable table) throws IllegalAccessException, InvocationTargetException {
+    public void user_clicks_the_menu_and_selects_value(DataTable table) throws Exception {
 
-        List<Map<String, String>> dropdownMenu = table.asMaps(String.class, String.class);
+        List<String> dropdownMenu = table.asList(String.class);
 
-        for(Map<String, String> input : dropdownMenu ){
+        for (int i = 1; i < dropdownMenu.size(); i++) {
 
-            String elementName = input.get("field");
-            String option = input.get("options");
+            String elementName = dropdownMenu.get(0);
+            String option = dropdownMenu.get(i);
 
-            dropdownPage.elementAction(elementName, option);
+            dropdownPage.fillElement(elementName, option);
 
         }
     }
@@ -50,16 +50,16 @@ public class DropdownSteps extends BaseClass {
     @Then("Correct option is selected")
     public void option_one_is_selected(DataTable table){
 
-        List<Map<String, String>> dropdownMenu = table.asMaps(String.class, String.class);
+        List<String> dropdownMenu = table.asList(String.class);
 
-        for(Map<String, String> input : dropdownMenu ){
+        for (int i = 1; i < dropdownMenu.size() ; i++) {
 
-            String expected = input.get("options");
-            String actual = dropdownPage.getSelectText(dropdownPage.menu_dropdown, expected );
+            String expected = dropdownMenu.get(i);
+            String actual = dropdownPage.getSelectText(dropdownPage.dropdown, expected );
             Assert.assertEquals(actual, expected);
-
         }
 
+        
     }
 
 }

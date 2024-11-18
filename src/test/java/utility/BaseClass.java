@@ -7,6 +7,7 @@ import org.testng.Assert;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -109,66 +110,59 @@ public class BaseClass {
     }
 
 
-
-   /*Should be moved to another class */
    public String getType(String value){
 
         return value.replaceAll(".*_", "");
    }
 
-   public void elementAction(String fieldName, String value) throws IllegalAccessException, InvocationTargetException {
-
-       String type = getType(fieldName);
-       Field[] fields = this.getClass().getDeclaredFields();
-
-       WebElement element;
-
-       for(Field field : fields) {
-
-           switch (type) {
-               case "button":
-                   if(field.getType() == WebElement.class && field.getName().equals(fieldName)) {
-                           element = (WebElement) field.get(this);
-                           this.clickAction(element);
-                           //System.out.println("PRESSED");
-                   }
-                   break;
-               case "field":
-                   if(field.getType() == WebElement.class && field.getName().equals(fieldName)) {
-                       element = (WebElement) field.get(this);
-                       this.enterData(element, value);
-                       //System.out.println("ENTERED");
-                   }
-                   break;
-               case "dropdown":
-                   if(field.getType() == WebElement.class && field.getName().equals(fieldName)) {
-                       element = (WebElement) field.get(this);
-                       this.selectDropdownByText(element, value);
-                       //System.out.println("SELECTED");
-                   }
-                   break;
-                   /* Not the best solution - It's assumed that you have a LIST of checkboxes */
-               case "checkbox" :
-                   if(field.getType() == List.class && field.getName().equals(fieldName)){
-                       Method[] methods = this.getClass().getDeclaredMethods();
-
-                       for(Method method : methods){
-                           if(method.getName().equals("clickCheckboxByOrder")){
-                               method.invoke(this, value);
-                               //System.out.println("CHECKED");
-                           }
-                       }
-                   }
-                   break;
-               default:
-                   System.out.println("No such type");
-           }
-
-       }
-
-
+   public String getElementName(String value){
+       return value.replaceAll("_.*", "");
    }
 
+   public void fillElement(String element, String value) throws Exception {
 
+       Field[] fields = this.getClass().getDeclaredFields();
+       WebElement webElement;
+       String elementType = this.getType(element);
+       String elementName = this.getElementName(element);
+
+       List<String> fieldNames = new ArrayList<>();
+
+       for(Field field : fields){
+           fieldNames.add(field.getName());
+       }
+
+       for(Field field : fields){
+           if(field.getName().equals(elementName) && field.getType() == WebElement.class){
+               field.setAccessible(true);
+
+               webElement = (WebElement) field.get(this);
+               switch(elementType){
+                   case "input":
+                       webElement.sendKeys(value);
+                       System.out.println("FILLED");
+                       break;
+                   case "checkbox":
+                       webElement.click();
+                       System.out.println("CHECKED");
+                       break;
+                   case "button":
+                       webElement.click();
+                       System.out.println("CLICKED");
+                       break;
+                   case "dropdown":
+                       this.selectDropdownByText(webElement, value);
+                       System.out.println("SELECTED");
+                       break;
+                   default :
+                       System.out.println("No such type");
+               }
+           }else if(!fieldNames.contains(elementName)){
+               System.out.println("No such element: " + elementName);
+               break;
+           }
+       }
+
+   }
 }
 

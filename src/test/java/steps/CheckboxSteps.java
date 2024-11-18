@@ -5,6 +5,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.testng.Assert;
 import pages.CheckboxPage;
 
 import java.lang.reflect.InvocationTargetException;
@@ -32,51 +33,30 @@ public class CheckboxSteps {
 
     /* TO DO */
     @When("User clicks checkbox")
-    public void user_clicks_checkbox(DataTable table) throws IllegalAccessException, InvocationTargetException {
+    public void user_clicks_checkbox(DataTable table) throws Exception {
 
         List<String> values = table.asList(String.class);
 
-        for (int i = 1; i < values.size(); i++) {
-            String name = values.get(0);
-            String num = values.get(i);
-
-            checkboxPage.elementAction(name, num);
-
-        }
-
-
-
-
+        checkboxPage.fillElement(values.get(0), "");
+        checkboxPage.fillElement(values.get(1), "");
 
 
     }
 
     @Then("Checkbox is checked")
-    public void checkbox_is_checked(DataTable table) throws InvocationTargetException, IllegalAccessException {
+    public void checkbox_is_checked(DataTable table)  {
 
-        List<Map<String, String>> values = table.asMaps(String.class, String.class);
+        //List<String> values = table.asList(String.class);
 
-        for(Map<String, String> input : values){
-
-            String num = input.get("checkbox");
-
-            checkboxPage.elementAction("checkbox", num);
-
-        }
-
+        Assert.assertTrue(checkboxPage.checkboxOne.isSelected());
     }
 
     @Then("Checkbox is unchecked")
     public void checkbox_is_unchecked(DataTable table){
 
-        List<Map<String, Integer>> values = table.asMaps(String.class, Integer.class);
+        //List<String> values = table.asList(String.class);
 
-        for(Map<String, Integer> input : values){
-
-            int num = input.get("checkbox");
-
-            checkboxPage.isNotSelected(checkboxPage.checkbox.get(num -1));
-        }
+        Assert.assertFalse(checkboxPage.checkboxTwo.isSelected());
 
     }
 

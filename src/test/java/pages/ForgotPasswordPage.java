@@ -18,10 +18,13 @@ public class ForgotPasswordPage extends BaseClass {
     }
 
     @FindBy(id = "email")
-    public WebElement email_field;
+    private WebElement email;
 
     @FindBy(id = "form_submit")
-    public WebElement retrieve_password_button;
+    private WebElement retrievePassword;
+
+    @FindBy(tagName = "h1")
+    public WebElement error_message;
 
     public void goToForgotPasswordPage(){
         driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL().concat("forgot_password"));

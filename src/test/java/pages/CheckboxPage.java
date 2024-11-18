@@ -19,11 +19,11 @@ public class CheckboxPage extends BaseClass {
         this.driver = driver;
     }
 
-   /* @FindBy(xpath = "//*[@id=\"checkboxes\"]/input[1]")
+    @FindBy(xpath = "//*[@id=\"checkboxes\"]/input[1]")
     public WebElement checkboxOne;
 
     @FindBy(xpath = "//*[@id=\"checkboxes\"]/input[2]")
-    public WebElement checkboxTwo;*/
+    public WebElement checkboxTwo;
 
     @FindBy(css = "input[type='checkbox']")
     public List<WebElement> checkbox;
