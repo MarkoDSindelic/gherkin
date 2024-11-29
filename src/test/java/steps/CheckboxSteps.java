@@ -24,7 +24,6 @@ public class CheckboxSteps {
         checkboxPage = testContext.getPageObjectManager().getCheckboxPage();
     }
 
-
     @Given("User is on the checkbox page")
     public void user_is_on_checkbox_page(){
         checkboxPage.goToCheckboxPage();
@@ -35,11 +34,13 @@ public class CheckboxSteps {
     @When("User clicks checkbox")
     public void user_clicks_checkbox(DataTable table) throws Exception {
 
-        List<String> values = table.asList(String.class);
+        List<List<String>> values = table.asLists(String.class);
 
-        checkboxPage.fillElement(values.get(0), "");
-        checkboxPage.fillElement(values.get(1), "");
+        System.out.println(values);
 
+        for (int i = 0; i < values.get(0).size(); i++) {
+                checkboxPage.fillElement(values.get(0).get(i), values.get(1).get(i));
+        }
 
     }
 

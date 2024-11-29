@@ -8,10 +8,7 @@ import io.cucumber.java.en.When;
 import org.testng.Assert;
 import pages.DropdownPage;
 import utility.BaseClass;
-
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.Map;
 
 
 public class DropdownSteps extends BaseClass {
