@@ -36,7 +36,6 @@ public class CheckboxSteps {
 
         List<List<String>> values = table.asLists(String.class);
 
-        System.out.println(values);
 
         for (int i = 0; i < values.get(0).size(); i++) {
                 checkboxPage.fillElement(values.get(0).get(i), values.get(1).get(i));

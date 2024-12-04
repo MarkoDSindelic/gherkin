@@ -1,5 +1,6 @@
 package pages;
 
+import dataProvider.ConfigHelper;
 import managers.FileReaderManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,7 +22,7 @@ public class DropdownPage extends BaseClass {
 
 
     public void goToDropdownPage(){
-        driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL().concat("dropdown"));
+        driver.get(ConfigHelper.get("dropdown"));
     }
 
 }

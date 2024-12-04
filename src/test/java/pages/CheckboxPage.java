@@ -1,6 +1,7 @@
 package pages;
 
 import dataProvider.ConfigFileReader;
+import dataProvider.ConfigHelper;
 import managers.FileReaderManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,7 +42,7 @@ public class CheckboxPage extends BaseClass {
 
 
     public void goToCheckboxPage(){
-        driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL().concat("checkboxes"));
+        driver.get(ConfigHelper.get("checkboxes"));
     }
 
 
