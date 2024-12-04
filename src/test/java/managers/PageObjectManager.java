@@ -1,10 +1,7 @@
 package managers;
 
 import org.openqa.selenium.WebDriver;
-import pages.CheckboxPage;
-import pages.DropdownPage;
-import pages.LoginPage;
-import pages.SecurePage;
+import pages.*;
 
 public class PageObjectManager {
 
@@ -13,6 +10,7 @@ public class PageObjectManager {
     LoginPage loginPage;
     SecurePage securePage;
     DropdownPage dropdownPage;
+    ForgotPasswordPage forgotPasswordPage;
 
     public PageObjectManager(WebDriver driver){
         this.driver = driver;
@@ -34,6 +32,10 @@ public class PageObjectManager {
 
     public DropdownPage getDropdownPage(){
         return (dropdownPage == null) ? dropdownPage = new DropdownPage(driver) : dropdownPage;
+    }
+
+    public ForgotPasswordPage forgotPasswordPage(){
+        return (forgotPasswordPage == null) ? forgotPasswordPage = new ForgotPasswordPage(driver) : forgotPasswordPage;
     }
 
 }

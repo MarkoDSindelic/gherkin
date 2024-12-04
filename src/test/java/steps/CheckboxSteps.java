@@ -5,6 +5,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.testng.Assert;
 import pages.CheckboxPage;
 
 import java.lang.reflect.InvocationTargetException;
@@ -23,7 +24,6 @@ public class CheckboxSteps {
         checkboxPage = testContext.getPageObjectManager().getCheckboxPage();
     }
 
-
     @Given("User is on the checkbox page")
     public void user_is_on_checkbox_page(){
         checkboxPage.goToCheckboxPage();
@@ -32,15 +32,13 @@ public class CheckboxSteps {
 
     /* TO DO */
     @When("User clicks checkbox")
-    public void user_clicks_checkbox(DataTable table) {
+    public void user_clicks_checkbox(DataTable table) throws Exception {
 
-        List<Map<String, Integer>> values = table.asMaps(String.class, Integer.class);
+        List<List<String>> values = table.asLists(String.class);
 
-        for(Map<String, Integer> input : values){
 
-          int num = input.get("checkbox");
-
-           checkboxPage.clickCheckboxByOrder(num);
+        for (int i = 0; i < values.get(0).size(); i++) {
+                checkboxPage.fillElement(values.get(0).get(i), values.get(1).get(i));
         }
 
     }
@@ -48,28 +46,17 @@ public class CheckboxSteps {
     @Then("Checkbox is checked")
     public void checkbox_is_checked(DataTable table)  {
 
-        List<Map<String, Integer>> values = table.asMaps(String.class, Integer.class);
+        //List<String> values = table.asList(String.class);
 
-        for(Map<String, Integer> input : values){
-
-            int num = input.get("checkbox");
-
-            checkboxPage.isSelected(checkboxPage.checkboxes.get(num -1));
-        }
-
+        Assert.assertTrue(checkboxPage.checkboxOne.isSelected());
     }
 
     @Then("Checkbox is unchecked")
     public void checkbox_is_unchecked(DataTable table){
 
-        List<Map<String, Integer>> values = table.asMaps(String.class, Integer.class);
+        //List<String> values = table.asList(String.class);
 
-        for(Map<String, Integer> input : values){
-
-            int num = input.get("checkbox");
-
-            checkboxPage.isNotSelected(checkboxPage.checkboxes.get(num -1));
-        }
+        Assert.assertFalse(checkboxPage.checkboxTwo.isSelected());
 
     }
 

@@ -7,6 +7,8 @@ import org.testng.Assert;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class BaseClass {
@@ -64,6 +66,11 @@ public class BaseClass {
     public void isElementDisplayed(WebElement webElement){
          Assert.assertTrue(webElement.isDisplayed());
     }
+
+    public void isElementNotDisplayed(WebElement webElement){
+        Assert.assertFalse(webElement.isDisplayed());
+    }
+
     /* Checks if two strings are equal */
     public void isEqual(WebElement webElement, String expected){
         String actual = webElement.getText();
@@ -78,30 +85,6 @@ public class BaseClass {
     public void isNotSelected(WebElement webElement){
         Assert.assertFalse(webElement.isSelected());
     }
-
-
-    /* Not good */
-   /* public WebElement getWebElementByName(Object object, String fieldName){
-
-        WebElement webElement = null;
-
-        Field[] fields = object.getClass().getDeclaredFields();
-
-        for(Field field : fields){
-            if(field.getType() == WebElement.class){
-                field.setAccessible(true);
-                if(field.getName().equals(fieldName)){
-                    try{
-                        webElement = (WebElement) field.get(object);
-                    } catch (IllegalAccessException e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-
-        return webElement;
-    }*/
 
     public void clickDropdownOptionByText(String fieldName, String value) throws IllegalAccessException, InvocationTargetException {
 
@@ -126,52 +109,60 @@ public class BaseClass {
         }
     }
 
-    //some experiment
-   /* public void test(String fieldName, String value) throws IllegalAccessException, InvocationTargetException {
 
-        WebElement webElement;
+   public String getType(String value){
 
-        Field[] fields = this.getClass().getDeclaredFields();
-        Method[] methods = this.getClass().getDeclaredMethods();
+        return value.replaceAll(".*_", "");
+   }
 
+   public String getElementName(String value){
+       return value.replaceAll("_.*", "");
+   }
 
+   public void fillElement(String element, String value) throws Exception {
 
-        for(Field f : fields){
-            for(Method method : methods){
+       Field[] fields = this.getClass().getDeclaredFields();
+       WebElement webElement;
+       String elementType = this.getType(element);
+       String elementName = this.getElementName(element);
 
+       List<String> fieldNames = new ArrayList<>();
 
-                if(f.getType() == WebElement.class){
-                    webElement = (WebElement) f.get(this);
+       for(Field field : fields){
+           fieldNames.add(field.getName());
+       }
 
-                    switch(fieldName){
-                        case "dropdown" :
-                            //this.selectDropdownByText(webElement, value);
-                            if(method.getName().equals("selectDropdownByText")){
-                                method.invoke(webElement, value);
-                            }
-                            break;
+       for(Field field : fields){
+           if(field.getName().equals(elementName) && field.getType() == WebElement.class){
+               field.setAccessible(true);
 
-                        case "checkboxOne":
-                            this.clickAction(webElement);
-                            System.out.println("Checkbox one");
-                            break;
+               webElement = (WebElement) field.get(this);
+               switch(elementType){
+                   case "input":
+                       webElement.sendKeys(value);
+                       System.out.println("FILLED");
+                       break;
+                   case "checkbox":
+                       webElement.click();
+                       System.out.println("CHECKED");
+                       break;
+                   case "button":
+                       webElement.click();
+                       System.out.println("CLICKED");
+                       break;
+                   case "dropdown":
+                       this.selectDropdownByText(webElement, value);
+                       System.out.println("SELECTED");
+                       break;
+                   default :
+                       System.out.println("No such type");
+               }
+           }else if(!fieldNames.contains(elementName)){
+               System.out.println("No such element: " + elementName);
+               break;
+           }
+       }
 
-                        case "checkboxTwo":
-                            this.clickAction(webElement);
-                            System.out.println("Checkbox two");
-                            break;
-
-                        default:
-                            System.out.println("No such element");
-                    }
-
-            }
-
-
-            }
-
-        }
-
-    }*/
-
+   }
 }
+

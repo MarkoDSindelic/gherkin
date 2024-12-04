@@ -1,5 +1,6 @@
 package pages;
 
+import dataProvider.ConfigHelper;
 import managers.FileReaderManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,7 +42,7 @@ public class LoginPage extends BaseClass {
 
     public void goToLoginPage(){
 
-        driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL().concat("login"));
+        driver.get(ConfigHelper.get("login"));
 
     }
 }

@@ -8,10 +8,7 @@ import io.cucumber.java.en.When;
 import org.testng.Assert;
 import pages.DropdownPage;
 import utility.BaseClass;
-
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.Map;
 
 
 public class DropdownSteps extends BaseClass {
@@ -33,32 +30,33 @@ public class DropdownSteps extends BaseClass {
     }
 
     @When("user clicks the menu and selects")
-    public void user_clicks_the_menu_and_selects_value(DataTable table) throws IllegalAccessException, InvocationTargetException {
+    public void user_clicks_the_menu_and_selects_value(DataTable table) throws Exception {
 
-        List<Map<String, String>> dropdownMenu = table.asMaps(String.class, String.class);
+        List<String> dropdownMenu = table.asList(String.class);
 
-        for(Map<String, String> input : dropdownMenu ){
+        for (int i = 1; i < dropdownMenu.size(); i++) {
 
-            String elementName = input.get("field");
-            String option = input.get("options");
+            String elementName = dropdownMenu.get(0);
+            String option = dropdownMenu.get(i);
 
-            dropdownPage.clickDropdownOptionByText(elementName, option);
+            dropdownPage.fillElement(elementName, option);
+
         }
     }
 
     @Then("Correct option is selected")
     public void option_one_is_selected(DataTable table){
 
-        List<Map<String, String>> dropdownMenu = table.asMaps(String.class, String.class);
+        List<String> dropdownMenu = table.asList(String.class);
 
-        for(Map<String, String> input : dropdownMenu ){
+        for (int i = 1; i < dropdownMenu.size() ; i++) {
 
-            String expected = input.get("options");
+            String expected = dropdownMenu.get(i);
             String actual = dropdownPage.getSelectText(dropdownPage.dropdown, expected );
             Assert.assertEquals(actual, expected);
-
         }
 
+        
     }
 
 }
