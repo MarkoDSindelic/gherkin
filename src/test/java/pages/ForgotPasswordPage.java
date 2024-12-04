@@ -1,6 +1,6 @@
 package pages;
 
-import managers.FileReaderManager;
+import dataProvider.ConfigHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,7 +27,8 @@ public class ForgotPasswordPage extends BaseClass {
     public WebElement error_message;
 
     public void goToForgotPasswordPage(){
-        driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL().concat("forgot_password"));
+        //driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationURL().concat("forgot_password"));
+        driver.get(ConfigHelper.get("forgot_password"));
     }
 
 }

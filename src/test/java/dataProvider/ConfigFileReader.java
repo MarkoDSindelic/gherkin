@@ -19,7 +19,7 @@ public class ConfigFileReader {
 
         try {
 
-            reader = new BufferedReader(new FileReader( propertyFilePath));
+            reader = new BufferedReader(new FileReader(propertyFilePath));
             properties = new Properties();
 
             try {
